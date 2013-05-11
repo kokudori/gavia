@@ -3,10 +3,10 @@
 	"version": "0.0.1",
 	"description": "ActiveRecord for IndexedDB",
 	"readmeFilename": "README.md",
-	"main": "./bin/Gavia.min.js",
+	"main": "./Gavia.min.js",
 	"scripts": {
 		"pretest": "./node_modules/.bin/bower install",
-		"test": "./node_modules/.bin/testem ci"
+		"test": "./node_modules/.bin/testem ci -T 120"
 	},
   "repository": {
 		"type": "git",

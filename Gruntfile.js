@@ -16,12 +16,12 @@ module.exports = function (grunt) {
 					'src/record/*.js',
 					'src/record/record.js'
 				],
-				dest: 'bin/Gavia.js',
+				dest: './Gavia.js',
 				exports: 'Gavia'
 			}
 		},
 		jshint: {
-			files: ['bin.Gavia.js', 'Gruntfile.js', 'src/**/*.js', 'test/**/*.js'],
+			files: ['./Gavia.js', 'Gruntfile.js', 'src/**/*.js', 'test/**/*.js'],
 			options: {
 				strict: false,
 				multistr: true,
@@ -48,7 +48,7 @@ module.exports = function (grunt) {
 		uglify: {
 			all: {
 				files: {
-					'bin/Gavia.min.js': ['bin/Gavia.js']
+					'./Gavia.min.js': ['./Gavia.js']
 				}
 			}
 		},

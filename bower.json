@@ -2,7 +2,7 @@
 	"name": "Gavia",
 	"version": "0.0.1",
 	"description": "ActiveRecord for IndexedDB",
-	"main": "bin/Gavia.min.js",
+	"main": "./Gavia.min.js",
 	"license": "MIT",
 	"keywords": [
 		"Gavia",

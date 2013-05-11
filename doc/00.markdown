@@ -6,33 +6,42 @@ out: index.html
 GaviaはIndexedDBのためのActiveRecord風ライブラリです。
 検索結果をjQueryDeferredで返すため、jQueryに依存しています。
 
+## Getting Started
+```
+bower install gavia
+```
+bowerはWeb開発用のJavaScriptパッケージマネージャです。
+
+<p><a href="http://bower.io/">http://bower.io/</a></p>
+
+
 ## LICENSE
 MIT LICENSE
 
 ## Example
 ```
 var db = new Gavia('test-db', {
-	store: {
-		keyPath: 'id',
-		autoIncrement: true,
-		index: {
-			unique: true
-		}
-	}
+  store: {
+    keyPath: 'id',
+    autoIncrement: true,
+    index: {
+      unique: true
+    }
+  }
 });
 
 var test = db.store.create();
 test.hoge = 'hogehoge';
 test.save().done(function() {
-	console.log('save done');
+  console.log('save done');
 });
 
 db.store.filter(function(record) {
-	return record.hoge.length > 5;
+  return record.hoge.length > 5;
 }).done(function(results) {
-	results.forEach(function(result) {
-		console.log(result);
-	});
+  results.forEach(function(result) {
+    console.log(result);
+  });
 });
 ```
 
