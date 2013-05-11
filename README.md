@@ -1,4 +1,4 @@
-# Gavia
+# Gavia [![Build Status](https://travis-ci.org/kokudori/gavia.png?branch=master)](https://travis-ci.org/kokudori/gavia)
 Gavia is ActiveRecord for IndexedDB.
 
 ## example
