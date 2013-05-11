@@ -1,0 +1,225 @@
+html, body {
+	height: 100%;
+}
+
+body {
+	font-family: "Helvetica Neue",Arial,"Hiragino Kaku Gothic Pro",Meiryo,"MS PGothic",sans-serif;
+	overflow: hidden;
+}
+
+.top.title {
+	margin: 0.5em;
+	padding-bottom: 0.5em;
+	border-bottom: #aaa solid 1px;
+}
+
+.container {
+	width: 920px;
+	overflow-x: hidden;
+}
+
+.container::-webkit-scrollbar {
+	width: 15px;
+	background-color: whitesmoke;
+}
+
+.container::-webkit-scrollbar-button {
+	height: 10px;
+	background-color: #ddd;
+}
+
+.container::-webkit-scrollbar-thumb {
+	background-color: #ccc;
+}
+
+.span-16 {
+	width: 820px;
+}
+
+code {
+	font-family: Consolas, "Liberation Mono", Courier, monospace;
+}
+
+.contents pre {
+	background-color: #f8f8f8;
+	border: 1px solid #ccc;
+	line-height: 19px;
+	overflow: auto;
+	padding: 6px 10px;
+	border-radius: 3px;
+	margin-left: 5em;
+}
+
+.contents pre::-webkit-scrollbar {
+	height: 10px;
+}
+
+.contents pre::-webkit-scrollbar-button {
+	width: 10px;
+	background-color: #aaa;
+}
+
+.contents pre::-webkit-scrollbar-thumb {
+	background-color: #666;
+}
+
+.contents > p > code {
+	margin: 0 2px;
+	padding: 0px 5px;
+	border: 1px solid #eaeaea;
+	background-color: #f8f8f8;
+	border-radius: 3px;
+	white-space: nowrap;
+}
+
+div.escape {
+	margin-top: 1.5em;
+	margin-bottom: 1.5em;
+}
+
+div.escape > pre {
+	margin-top: 0px;
+	margin-bottom: 0px;
+	border-top: none;
+	border-bottom: none;
+}
+
+div.escape > pre:first-child {
+	padding-bottom: 0px;
+	border-top: 1px solid #ccc;
+}
+
+div.escape > pre:last-child {
+	padding-top: 0px;
+	border-bottom: 1px solid #ccc;
+}
+
+div.escape > pre br {
+	display: none;
+}
+
+table {
+	margin-top: 20px;
+	margin-left: 60px;
+	width: 92%;
+	border-top: solid 1px #d9d9d9;
+	border-left: solid 1px #d9d9d9;
+}
+
+table.catalog {
+	table-layout: fixed;
+}
+
+table th {
+	text-align: center;
+	white-space: nowrap;
+	background-color: white;
+	border-right: solid 1px #ccc;
+	border-bottom: solid 1px #bbb;
+}
+
+table td {
+	border-bottom: solid 1px #ccc;
+	border-right: solid 1px #ccc;
+}
+
+table tr:nth-child(even) td {
+	background-color: whitesmoke;
+}
+
+table.report td:not(:nth-child(2)) {
+	text-align: center;
+}
+
+table.report td:nth-child(2) {
+	padding-left: 15px;
+}
+
+table.summary td {
+	text-align: center;
+}
+
+table.catalog tr td {
+	text-align: center;
+	background-color: white;
+}
+
+.grandiose {
+	font-weight: bold;
+	font-size: 1.8em;
+}
+
+h1 {
+	margin-left: 0.5em;
+	font-size: 2.3em;
+	font-weight: bold;
+}
+
+h2 {
+	font-size: 1.6em;
+	font-weight: bold;
+	margin: 1em auto 0.3em 1.5em;
+}
+
+.contents > ol {
+	font-size: 120%;
+	margin: 0.6em auto 0.6em 5em;
+}
+
+blockquote {
+	margin: 1em 0em 1em 3em;
+	color: #444;
+	border-left: 4px solid #DDD;
+}
+
+blockquote p {
+	margin: initial;
+}
+
+p {
+	font-size: 1.2em;
+	width: 40em;
+	line-height: 1.6em;
+	text-indent: 0.6em;
+	margin: 0em 0em 0em 3em;
+}
+
+p + p {
+	text-indent: 0.6em;
+	margin-top: 0.6em;
+}
+
+p.annotation {
+	font-size: 90%;
+	margin: 2em 2em 2em 6em;
+}
+
+.bottom {
+	margin-top: 3em;
+}
+
+.bottom > em {
+	margin-left: 3em;
+}
+
+.gist .highlight {
+	background: initial;
+}
+
+.gist {
+	margin-left: 40px;
+}
+
+.gist table {
+	margin: 0px;
+	width: 100%;
+	border: none;
+}
+
+.gist table td.line-numbers {
+	width: 15px;
+}
+
+.gist .gits-syntax {
+	border-bottom: none;
+}

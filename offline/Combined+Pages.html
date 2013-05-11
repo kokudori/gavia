@@ -1,0 +1,1103 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html manifest="pamflet.manifest">
+      <head>
+        <title>Gavia — Combined Pages</title>
+        <link type="text/css" media="screen, projection" rel="stylesheet" href="css/blueprint/screen.css"></link>
+        <link type="text/css" media="screen and (min-device-width: 800px), projection" rel="stylesheet" href="css/blueprint/grid.css"></link>
+        <link type="text/css" media="print" rel="stylesheet" href="css/blueprint/print.css"></link> 
+        <!--[if lt IE 8]>
+          <link rel="stylesheet" href="css/blueprint/ie.css" type="text/css" media="screen, projection"/>
+        <![endif]-->
+        <link type="text/css" media="screen, projection" rel="stylesheet" href="css/pamflet.css"></link>
+        <link type="text/css" media="print" rel="stylesheet" href="css/pamflet-print.css"></link>
+        <link type="text/css" media="screen and (min-device-width: 800px), projection" rel="stylesheet" href="css/pamflet-grid.css"></link>
+        <link type="text/css" media="screen, projection" rel="stylesheet" href="css/custom.css"></link>
+        <script src="js/jquery-1.6.2.min.js"></script>
+        <script src="js/jquery.collapse.js"></script>
+        <script src="js/pamflet.js"></script>
+        <script type="text/javascript" src="js/prettify/prettify.js"></script><link type="text/css" rel="stylesheet" href="css/prettify.css"></link><script type="text/javascript"><!--
+        window.onload=function() { prettyPrint(); };
+      --></script>
+        <meta charset="utf-8"></meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+        
+      </head>
+      <body>
+        <a class="page prev nav" href="Contents+in+Depth.html">
+            <span class="space">&nbsp;</span>
+            <span class="flip">&gt;</span>
+          </a>
+        <div class="container">
+          <div class="span-16 prepend-1 append-1">
+            <div class="top nav span-16 title">
+              <span>Gavia</span> — Combined Pages
+            </div>
+          </div>
+          <div class="span-16 prepend-1 append-1 contents">
+            <div class="tocwrapper show">
+      <a class="tochead nav" style="display: none" href="#toc">❦</a>
+      <a name="toc"></a>
+      <h4 class="toctitle">Contents</h4>
+      <div class="tocbody">
+      <div><a href="#Gavia">Gavia</a></div><ol class="toc"> <li><div><a href="#Gavia">Gavia</a></div><ol class="toc">  </ol></li><li><div><a href="#Gavia.Store.fn">Gavia.Store.fn</a></div><ol class="toc"> <li><div><a href="#all">all</a></div></li><li><div><a href="#bound">bound</a></div></li><li><div><a href="#boundThan">boundThan</a></div></li><li><div><a href="#clear">clear</a></div></li><li><div><a href="#create">create</a></div></li><li><div><a href="#delete">delete</a></div></li><li><div><a href="#filter">filter</a></div></li><li><div><a href="#find">find</a></div></li><li><div><a href="#lower">lower</a></div></li><li><div><a href="#lowerThan">lowerThan</a></div></li><li><div><a href="#transaction">transaction</a></div></li><li><div><a href="#upper">upper</a></div></li><li><div><a href="#upperThan">upperThan</a></div></li> </ol></li><li><div><a href="#Gavia.Record.fn">Gavia.Record.fn</a></div><ol class="toc"> <li><div><a href="#delete">delete</a></div></li><li><div><a href="#save">save</a></div></li><li><div><a href="#update">update</a></div></li> </ol></li><li><div><a href="#Untitled">Untitled</a></div></li> </ol></div></div><h1 id="Gavia">Gavia</h1><p>GaviaはIndexedDBのためのActiveRecord風ライブラリです。
+検索結果をjQueryDeferredで返すため、jQueryに依存しています。
+</p><h2 id="LICENSE">LICENSE</h2><p>MIT LICENSE
+</p><h2 id="Example">Example</h2><pre><code class="prettyprint lang-">var db = new Gavia('test-db', {
+	store: {
+		keyPath: 'id',
+		autoIncrement: true,
+		index: {
+			unique: true
+		}
+	}
+});
+
+var test = db.store.create();
+test.hoge = 'hogehoge';
+test.save().done(function() {
+	console.log('save done');
+});
+
+db.store.filter(function(record) {
+	return record.hoge.length &gt; 5;
+}).done(function(results) {
+	results.forEach(function(result) {
+		console.log(result);
+	});
+});
+</code></pre><h2 id="More+Example">More Example</h2><p>簡単なTODOアプリをGaviaを使って構築してみました。
+</p><p>
+<a href="http://kokudori.github.io/gavia/exmaple/index.html">http://kokudori.github.io/gavia/exmaple/index.html</a>
+</p>
+<p>ソースはGistにて公開しています。
+</p><p>
+<a href="https://gist.github.com/kokudori/5559908">https://gist.github.com/kokudori/5559908</a>
+</p>
+<br />
+<script src="https://gist.github.com/kokudori/5559908.js"></script>
+<h1 id="Gavia">Gavia</h1><p>DBを作成するにはGaviaコンストラクタを使います。  
+</p><h2 id="%E3%82%B7%E3%82%B0%E3%83%8D%E3%83%81%E3%83%A3">シグネチャ</h2><pre><code class="prettyprint lang-">gaviaDBObject = new Gavia('DBName', version, {  // optional version
+	'ObjectStoreName': {
+		keyPath: 'keyName',           // optional
+		autoIncrement: Boolean,       // optional
+		index: {                      // optional
+			keyPath: 'indexKeyName',    // optional
+			name: 'indexName',          // optional
+			unique: Boolean,      // optional
+			multiEntry: Boolean   // optional
+		}
+	},
+	...
+})
+</code></pre><h2 id="%E3%83%91%E3%83%A9%E3%83%A1%E3%83%BC%E3%82%BF">パラメータ</h2><table class="report">
+	<thead>
+		<tr>
+			<th>名前</th>
+			<th>概要</th>
+			<th>デフォルト値</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>DBName</td>
+			<td>作成するDBの名前。
+			IndexedDB内で一意の文字列を指定。</td>
+			<td>省略不可</td>
+		</tr>
+		<tr>
+			<td>version</td>
+			<td>DBのバージョンを指定。
+			バージョンが上がるとオブジェクトストアの構成を変更する。</td>
+			<td>1</td>
+		</tr>
+		<tr>
+			<td>ObjectStoreName</td>
+			<td>作成するオブジェクトストアの名前。
+			DB内で一意の文字列を指定。</td>
+			<td>省略不可</td>
+		</tr>
+		<tr>
+			<td>keyPath</td>
+			<td>指定するオブジェクトストアの主キー。</td>
+			<td>省略するとオブジェクトの保存時にキーを指定する必要がある。</td>
+		</tr>
+		<tr>
+			<td>autoIncrement</td>
+			<td>オブジェクトを保存するたびにキー値を自動でインクリメントするかどうか。</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>index</td>
+			<td>オブジェクトストアのindexを指定。</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>index: keyPath</td>
+			<td>indexとなるプロパティの名前。</td>
+			<td>オブジェクトストアのkeyPath</td>
+		</tr>
+		<tr>
+			<td>index: name</td>
+			<td>作成するindexの名前。</td>
+			<td>indexのkeyPath。</td>
+		</tr>
+		<tr>
+			<td>index: unique</td>
+			<td>indexが一意かどうか。</td>
+			<td class="none"></td>
+		</tr>
+		<tr>
+			<td>index: multiEntry</td>
+			<td></td>
+			<td></td>
+		</tr>
+	</tbody>
+</table>
+<p>作成したgaviaDBObjectへは<code>Gavia['DBName']</code>でも同様にアクセス出来ます。  
+また、gaviaDBObjectから個々のオブジェクトストアへも、
+オブジェクトストア名からプロパティアクセス可能です。
+</p><h2 id="%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB">サンプル</h2><pre><code class="prettyprint lang-">var db = new Gavia('sample-db', {
+	'sample-store': {
+		keyPath: 'id'
+	}
+});
+assert(db === Gavia['sample-db']);
+db['sample-store']; // ストアオブジェクト
+</code></pre><h1 id="Gavia.Store.fn">Gavia.Store.fn</h1><p>オブジェクトストアへのメソッド群はGavia.Store.fnに定義されています。  
+また、Gavia.Store.fnへ新たにユーザー定義メソッドを作ることも出来ます。  
+</p><p>また、ほぼ全てのメソッドはjQueryDeferredを返します。  
+</p><h2 id="%E3%83%A1%E3%82%BD%E3%83%83%E3%83%89">メソッド</h2><table class="report">
+	<thead>
+		<tr>
+			<th>名前</th>
+			<th>概要</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>all</td>
+			<td>全てのオブジェクトを取得。</td>
+		</tr>
+		<tr>
+			<td>bound</td>
+			<td>lower <= key <= upper となるオブジェクトを全て取得。</td>
+		</tr>
+		<tr>
+			<td>boundThan</td>
+			<td>lower < key < upper となるオブジェクトを全て取得。</td>
+		</tr>
+		<tr>
+			<td>clear</td>
+			<td>オブジェクトストアの全オブジェクトを削除。</td>
+		</tr>
+		<tr>
+			<td>create</td>
+			<td>新しくオブジェクトを作成。</td>
+		</tr>
+		<tr>
+			<td>delete</td>
+			<td>オブジェクトを削除</td>
+		</tr>
+		<tr>
+			<td>find</td>
+			<td>keyを元にオブジェクトを取得。</td>
+		</tr>
+		<tr>
+			<td>lower</td>
+			<td>key <= upper となるオブジェクトを全て取得。</td>
+		</tr>
+		<tr>
+			<td>lowerThan</td>
+			<td>key < upper となるオブジェクトを全て取得。</td>
+		</tr>
+		<tr>
+			<td>transaction</td>
+			<td>データの作成、削除を１つのトランザクション内で完結させる。</td>
+		</tr>
+		<tr>
+			<td>upper</td>
+			<td>lower <= key となるオブジェクトを全て取得。</td>
+		</tr>
+		<tr>
+			<td>upperThan</td>
+			<td>lower < key となるオブジェクトを全て取得。</td>
+		</tr>
+	</tbody>
+</table>
+<h2 id="%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB">サンプル</h2><pre><code class="prettyprint lang-">Gavia['sample-db']['sample-store']
+	.find(10).done(function(result) {
+		console.log(result);
+	});
+</code></pre><h1 id="all">all</h1><p>オブジェクトストアに属する全オブジェクトを取得。
+</p><h2 id="%E3%82%B7%E3%82%B0%E3%83%8D%E3%83%81%E3%83%A3">シグネチャ</h2><pre><code class="prettyprint lang-">jQueryDeferred = gaviaStoreObject.all({
+	index: 'indexName',  // optional
+	offset: Number,      // optional
+	limit: Number,       // optional
+	count: Boolean       // optional
+});
+</code></pre><h2 id="%E3%83%91%E3%83%A9%E3%83%A1%E3%83%BC%E3%82%BF">パラメータ</h2><table class="report">
+	<thead>
+		<tr>
+			<th>名前</th>
+			<th>概要</th>
+			<th>デフォルト値</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>index</td>
+			<td>indexを指定</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>offset</td>
+			<td>offset分、最初のオブジェクトを飛ばして取得。</td>
+			<td>0</td>
+		</tr>
+		<tr>
+			<td>limit</td>
+			<td>取得する最大数。</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>count</td>
+			<td>trueの場合、取得したオブジェクトの数を返す。</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+</table>
+<h2 id="%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB">サンプル</h2><pre><code class="prettyprint lang-">// gaviaStoreObject に 1 ~ 9のkeyを持つオブジェクトが存在すると仮定。
+gaviaStoreObject.all().done(function(results) {
+	console.log(results); // 1 ~ 9
+});
+
+gaviaStoreObject.all({
+	offset: 2,
+	limit: 4
+}).done(function(results) {
+	console.log(results); // 3 ~ 6
+});
+
+gaviaStoreObject.all({
+	count: true
+}).done(function(count) {
+	console.log(count); // 9
+});
+</code></pre><h1 id="bound">bound</h1><p><code>lower &lt;= key &lt;= upper</code>となるオブジェクトを全て取得。
+</p><p><a href="store-fn-boundThan.html">boundThan</a>とは違い、境界を<strong>含む</strong>。
+</p><h2 id="%E3%82%B7%E3%82%B0%E3%83%8D%E3%83%81%E3%83%A3">シグネチャ</h2><pre><code class="prettyprint lang-">jQueryDeferred = gaviaStoreObject.bound(lower, upper, {
+	direction: Gavia.Store.direction,  // optional
+	index: 'indexName',                // optional
+	offset: Number,                    // optional
+	limit: Number,                     // optional
+	count: Boolean                     // optional
+});
+</code></pre><h2 id="%E3%83%91%E3%83%A9%E3%83%A1%E3%83%BC%E3%82%BF">パラメータ</h2><table class="report">
+	<thead>
+		<tr>
+			<th>名前</th>
+			<th>概要</th>
+			<th>デフォルト値</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>direction</td>
+			<td>オブジェクトを探索する方向を指定。
+			詳しくは後述する。</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>index</td>
+			<td>indexを指定</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>offset</td>
+			<td>offset分、最初のオブジェクトを飛ばして取得。</td>
+			<td>0</td>
+		</tr>
+		<tr>
+			<td>limit</td>
+			<td>取得する最大数。</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>count</td>
+			<td>trueの場合、取得したオブジェクトの数を返す。</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+</table>
+<h2 id="Gavia.Store.direction">Gavia.Store.direction</h2><p>Gavia.Store.directionはオブジェクトストアの探索方向を指定するものです。  
+探索方向は昇順、重複なし昇順、降順、重複なし降順の４つがあります。  
+</p><table class="report">
+	<thead>
+		<tr>
+			<th>名前</th>
+			<th>概要</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>Gavia.Store.direction.next</td>
+			<td>昇順</td>
+		</tr>
+		<tr>
+			<td>Gavia.Store.direction.nextunique</td>
+			<td>重複なし昇順</td>
+		</tr>
+		<tr>
+			<td>Gavia.Store.direction.prev</td>
+			<td>降順</td>
+		</tr>
+		<tr>
+			<td>Gavia.Store.direction.prevunique</td>
+			<td>重複なし降順</td>
+		</tr>
+	</tbody>
+</table>
+<h2 id="%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB">サンプル</h2><pre><code class="prettyprint lang-">// gaviaStoreObject に 1 ~ 9のkeyを持つオブジェクトが存在すると仮定。
+gaviaStoreObject.bound(2, 8).done(function(results) {
+	console.log(results); // 2 ~ 8
+});
+
+gaviaStoreObject.bound(2, 8, {
+	direction: Gavia.Store.direction.prev
+}).done(function(results) {
+	console.log(results); // 8 ~ 2
+});
+
+gaviaStoreObject.bound(2, 8, {
+	offset: 2,
+	limit: 2
+}).done(function(results) {
+	console.log(results); // 4 ~ 6
+});
+
+gaviaStoreObject.bound(2, 8, {
+	count: true
+}).done(function(count) {
+	console.log(count); // 7
+});
+</code></pre><h1 id="boundThan">boundThan</h1><p><code>lower &lt; key &lt; upper</code>となるオブジェクトを全て取得。
+</p><p><a href="store-fn-bound.html">bound</a>とは違い、境界を<strong>含まない</strong>。
+</p><h2 id="%E3%82%B7%E3%82%B0%E3%83%8D%E3%83%81%E3%83%A3">シグネチャ</h2><pre><code class="prettyprint lang-">jQueryDeferred = gaviaStoreObject.boundThan(lower, upper, {
+	direction: Gavia.Store.direction,  // optional
+	index: 'indexName',                // optional
+	offset: Number,                    // optional
+	limit: Number,                     // optional
+	count: Boolean                     // optional
+});
+</code></pre><h2 id="%E3%83%91%E3%83%A9%E3%83%A1%E3%83%BC%E3%82%BF">パラメータ</h2><table class="report">
+	<thead>
+		<tr>
+			<th>名前</th>
+			<th>概要</th>
+			<th>デフォルト値</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>direction</td>
+			<td>オブジェクトを探索する方向を指定。
+			詳しくは<a href="store-fn-bound.html#Gavia.Store.direction">Gavia.Store.direction</a>を参照。
+			</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>index</td>
+			<td>indexを指定</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>offset</td>
+			<td>offset分、最初のオブジェクトを飛ばして取得。</td>
+			<td>0</td>
+		</tr>
+		<tr>
+			<td>limit</td>
+			<td>取得する最大数。</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>count</td>
+			<td>trueの場合、取得したオブジェクトの数を返す。</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+</table>
+<h2 id="%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB">サンプル</h2><pre><code class="prettyprint lang-">// gaviaStoreObject に 1 ~ 9のkeyを持つオブジェクトが存在すると仮定。
+gaviaStoreObject.boundThan(2, 8).done(function(results) {
+	console.log(results); // 3 ~ 7
+});
+
+gaviaStoreObject.boundThan(2, 8, {
+	direction: Gavia.Store.direction.prev
+}).done(function(results) {
+	console.log(results); // 7 ~ 3
+});
+
+gaviaStoreObject.boundThan(2, 8, {
+	offset: 2,
+	limit: 2
+}).done(function(results) {
+	console.log(results); // 5 ~ 7
+});
+
+gaviaStoreObject.boundThan(2, 8, {
+	count: true
+}).done(function(count) {
+	console.log(count); // 5
+});
+</code></pre><h1 id="clear">clear</h1><p>オブジェクトストアに属するオブジェクトを全て削除する。
+</p><h2 id="%E3%82%B7%E3%82%B0%E3%83%8D%E3%83%81%E3%83%A3">シグネチャ</h2><pre><code class="prettyprint lang-">jQueryDeferred = gaviaStoreObject.clear();
+</code></pre><h2 id="%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB">サンプル</h2><pre><code class="prettyprint lang-">gaviaStoreObject.clear().done(function() {
+	console.log('clear done');
+});
+</code></pre><h1 id="create">create</h1><p>オブジェクトを新しく作成。  
+saveするまでオブジェクトストアには保存されない。
+</p><h2 id="%E3%82%B7%E3%82%B0%E3%83%8D%E3%83%81%E3%83%A3">シグネチャ</h2><pre><code class="prettyprint lang-">Object = gaviaStoreObject.create(key); // optional key
+</code></pre><h2 id="%E3%83%91%E3%83%A9%E3%83%A1%E3%83%BC%E3%82%BF">パラメータ</h2><table class="report">
+	<thead>
+		<tr>
+			<th>名前</th>
+			<th>概要</th>
+			<th>デフォルト値</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>key</td>
+			<td>keyPathを設定している場合は、作成時にkeyを設定する。</td>
+			<td>省略可能。</td>
+		</tr>
+	</tbody>
+</table>
+<h2 id="%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB">サンプル</h2><pre><code class="prettyprint lang-">var obj = gaviaStoreObject.create();
+var obj2 = gaviaStoreObject.create(123);
+</code></pre><h1 id="delete">delete</h1><p>オブジェクトストアから特定のオブジェクトを削除。
+</p><h2 id="%E3%82%B7%E3%82%B0%E3%83%8D%E3%83%81%E3%83%A3">シグネチャ</h2><pre><code class="prettyprint lang-">jQueryDeferred = gaviaStoreObject.delete(key);
+</code></pre><h2 id="%E3%83%91%E3%83%A9%E3%83%A1%E3%83%BC%E3%82%BF">パラメータ</h2><table class="report">
+	<thead>
+		<tr>
+			<th>名前</th>
+			<th>概要</th>
+			<th>デフォルト値</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>key</td>
+			<td>削除したいオブジェクトのkey。</td>
+			<td>省略不可。</td>
+		</tr>
+	</tbody>
+</table>
+<h2 id="%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB">サンプル</h2><pre><code class="prettyprint lang-">gaviaStoreObject.delete(123).done(function() {
+	console.log('delete done');
+});
+</code></pre><h1 id="filter">filter</h1><p>オブジェクトストアから、値もしくは述語関数にマッチするオブジェクトを返す。
+</p><h2 id="%E3%82%B7%E3%82%B0%E3%83%8D%E3%83%81%E3%83%A3">シグネチャ</h2><pre><code class="prettyprint lang-">jQueryDeferred = gaviaStoreObject.filter(value, {
+	index: 'indexName',      // optional
+	offset: Number,          // optional
+	limit: Number,           // optional
+	count: Boolean           // optional
+});
+jQueryDeferred = gaviaStoreObject.filter(prediacte, {
+	index: 'indexName',      // optional
+	offset: Number,          // optional
+	limit: Number,           // optional
+	count: Boolean           // optional
+});
+</code></pre><h2 id="%E3%83%91%E3%83%A9%E3%83%A1%E3%83%BC%E3%82%BF">パラメータ</h2><table class="report">
+	<thead>
+		<tr>
+			<th>名前</th>
+			<th>概要</th>
+			<th>デフォルト値</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>value</td>
+			<td>keyと一致するオブジェクトを返す。</td>
+			<td>省略不可</td>
+		</tr>
+		<tr>
+			<td>predicate</td>
+			<td>述語関数。
+			関数がtrueを返した時に渡されていたオブジェクト群を返す。</td>
+			<td>省略不可</td>
+		</tr>
+		<tr>
+			<td>index</td>
+			<td>indexを指定</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>offset</td>
+			<td>offset分、最初のオブジェクトを飛ばして取得。</td>
+			<td>0</td>
+		</tr>
+		<tr>
+			<td>limit</td>
+			<td>取得する最大数。</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>count</td>
+			<td>trueの場合、取得したオブジェクトの数を返す。</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+</table>
+<h2 id="%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB">サンプル</h2><pre><code class="prettyprint lang-">// gaviaStoreObject に 1 ~ 9のkeyを
+// idプロパティとして持つオブジェクトが存在すると仮定。
+gaviaStoreObject.filter(function(result) {
+	return result.id % 2 === 0;
+}).done(function(odd) {
+	console.log(odd); // id -&gt; [2, 4, 6, 8]
+});
+
+gaviaStoreObject.filter(function(result) {
+	return result.id % 2 === 0;
+}, {
+	offset: 2,
+	limit: 2
+}).done(function(results) {
+	console.log(results); // id -&gt; [4, 6]
+});
+
+gaviaStoreObject.filter(function(result) {
+	return result.id % 2 === 0;
+}, {
+	count: true
+}).done(function(count) {
+	console.log(count); // 4
+});
+
+gaviaStoreObject.filter(5).done(function(result) {
+	console.log(result); // id -&gt; 5
+});
+
+gaviaStoreObject.filter(5, {
+	offset: 6
+}).done(function(result) {
+	console.log(result); // undefined
+});
+
+gaviaStoreObject.filter(5, {
+	count: true
+}).done(function(count) {
+	console.log(count); // 1
+});
+</code></pre><h1 id="find">find</h1><p>オブジェクトストアからkeyを元にオブジェクトを取得。
+</p><h2 id="%E3%82%B7%E3%82%B0%E3%83%8D%E3%83%81%E3%83%A3">シグネチャ</h2><pre><code class="prettyprint lang-">jQueryDeferred = gaviaStoreObject.find(key, {
+	index: 'indexName'       // optional
+});
+</code></pre><h2 id="%E3%83%91%E3%83%A9%E3%83%A1%E3%83%BC%E3%82%BF">パラメータ</h2><table class="report">
+	<thead>
+		<tr>
+			<th>名前</th>
+			<th>概要</th>
+			<th>デフォルト値</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>key</td>
+			<td>探索対象のオブジェクトのkey。</td>
+			<td>省略不可</td>
+		</tr>
+		<tr>
+			<td>index</td>
+			<td>indexを指定</td>
+			<td></td>
+		</tr>
+	</tbody>
+</table>
+<h2 id="%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB">サンプル</h2><pre><code class="prettyprint lang-">// gaviaStoreObject に 1 ~ 9のkeyを持つオブジェクトが存在すると仮定。
+gaviaStoreObject.find(123).done(function(result) {
+	console.log(result); // key が123のオブジェクト
+});
+
+gaviaStoreObject.find(123, {
+	index: 'id'
+}).done(function(result) {
+	console.log(result); // key が123のオブジェクト
+});
+</code></pre><h1 id="lower">lower</h1><p>key &lt;= upper となるオブジェクトを全て取得。
+</p><p><a href="store-fn-lowerThan.html">lowerThan</a>とは違い、境界を<strong>含む</strong>。
+</p><h2 id="%E3%82%B7%E3%82%B0%E3%83%8D%E3%83%81%E3%83%A3">シグネチャ</h2><pre><code class="prettyprint lang-">jQueryDeferred = gaviaStoreObject.lower(upper, {
+	direction: Gavia.Store.direction,  // optional
+	index: 'indexName',                // optional
+	offset: Number,                    // optional
+	limit: Number,                     // optional
+	count: Boolean                     // optional
+});
+</code></pre><h2 id="%E3%83%91%E3%83%A9%E3%83%A1%E3%83%BC%E3%82%BF">パラメータ</h2><table class="report">
+	<thead>
+		<tr>
+			<th>名前</th>
+			<th>概要</th>
+			<th>デフォルト値</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>upper</td>
+			<td>upper**以下**となるkeyを持つオブジェクトを取得する。</td>
+			<td>省略不可。</td>
+		<tr>
+			<td>direction</td>
+			<td>オブジェクトを探索する方向を指定。
+			詳しくは<a href="store-fn-bound.html#Gavia.Store.direction">Gavia.Store.direction</a>を参照。
+			</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>index</td>
+			<td>indexを指定</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>offset</td>
+			<td>offset分、最初のオブジェクトを飛ばして取得。</td>
+			<td>0</td>
+		</tr>
+		<tr>
+			<td>limit</td>
+			<td>取得する最大数。</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>count</td>
+			<td>trueの場合、取得したオブジェクトの数を返す。</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+</table>
+<h2 id="%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB">サンプル</h2><pre><code class="prettyprint lang-">// gaviaStoreObject に 1 ~ 9のkeyを持つオブジェクトが存在すると仮定。
+gaviaStoreObject.lower(6).done(function(results) {
+	console.log(results); // 1 ~ 6
+});
+
+gaviaStoreObject.lower(6, {
+	direction: Gavia.Store.direction.prev
+}).done(function(results) {
+	console.log(results); // 6 ~ 1
+});
+
+gaviaStoreObject.lower(6, {
+	offset: 2,
+	limit: 2
+}).done(function(results) {
+	console.log(results); // 3 ~ 5
+});
+
+gaviaStoreObject.lower(6, {
+	count: true
+}).done(function(count) {
+	console.log(count); // 6
+});
+</code></pre><h1 id="lowerThan">lowerThan</h1><p>key &lt; upper となるオブジェクトを全て取得。
+</p><p><a href="store-fn-lower.html">lower</a>とは違い、境界を<strong>含まない</strong>。
+</p><h2 id="%E3%82%B7%E3%82%B0%E3%83%8D%E3%83%81%E3%83%A3">シグネチャ</h2><pre><code class="prettyprint lang-">jQueryDeferred = gaviaStoreObject.lowerThan(upper, {
+	direction: Gavia.Store.direction,  // optional
+	index: 'indexName',                // optional
+	offset: Number,                    // optional
+	limit: Number,                     // optional
+	count: Boolean                     // optional
+});
+</code></pre><h2 id="%E3%83%91%E3%83%A9%E3%83%A1%E3%83%BC%E3%82%BF">パラメータ</h2><table class="report">
+	<thead>
+		<tr>
+			<th>名前</th>
+			<th>概要</th>
+			<th>デフォルト値</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>upper</td>
+			<td>upper**より下**となるkeyを持つオブジェクトを取得する。</td>
+			<td>省略不可。</td>
+		<tr>
+		<tr>
+			<td>direction</td>
+			<td>オブジェクトを探索する方向を指定。
+			詳しくは<a href="store-fn-bound.html#Gavia.Store.direction">Gavia.Store.direction</a>を参照。
+			</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>index</td>
+			<td>indexを指定</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>offset</td>
+			<td>offset分、最初のオブジェクトを飛ばして取得。</td>
+			<td>0</td>
+		</tr>
+		<tr>
+			<td>limit</td>
+			<td>取得する最大数。</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>count</td>
+			<td>trueの場合、取得したオブジェクトの数を返す。</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+</table>
+<h2 id="%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB">サンプル</h2><pre><code class="prettyprint lang-">// gaviaStoreObject に 1 ~ 9のkeyを持つオブジェクトが存在すると仮定。
+gaviaStoreObject.lowerThan(6).done(function(results) {
+	console.log(results); // 1 ~ 5
+});
+
+gaviaStoreObject.lowerThan(6, {
+	direction: Gavia.Store.direction.prev
+}).done(function(results) {
+	console.log(results); // 5 ~ 1
+});
+
+gaviaStoreObject.lowerThan(6, {
+	offset: 2,
+	limit: 2
+}).done(function(results) {
+	console.log(results); // 3 ~ 5
+});
+
+gaviaStoreObject.lowerThan(6, {
+	count: true
+}).done(function(count) {
+	console.log(count); // 5
+});
+</code></pre><h1 id="transaction">transaction</h1><p>対象のオブジェクトストアへの複数の操作を１つのトランザクション内で行う。
+</p><h2 id="%E3%82%B7%E3%82%B0%E3%83%8D%E3%83%81%E3%83%A3">シグネチャ</h2><pre><code class="prettyprint lang-">jQueryDeferred = gaviaStoreObject.transaction(store..., callback);
+</code></pre><p>storeは複数指定可能。  
+callbackは引数の最後にしなければならない。  
+</p><h2 id="%E3%83%91%E3%83%A9%E3%83%A1%E3%83%BC%E3%82%BF">パラメータ</h2><table class="report">
+	<thead>
+		<tr>
+			<th>名前</th>
+			<th>概要</th>
+			<th>デフォルト値</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>store</td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>callback</td>
+			<td>トランザクション内で行う処理。
+			callbackへは、transactionに渡したstore...と同じだけの数のtransactionStoreオブジェクトが引数として渡される。
+			falseを返すと、transaction全体がabortされる。
+			</td>
+			<td></td>
+		</tr>
+	</tbody>
+</table>
+<h2 id="transactionStore">transactionStore</h2><p>callbackに渡されるオブジェクト。
+storeに対して変更を行うメソッドが２つ用意されている。
+</p><ol><li>transactionStore.add(value) : 
+オブジェクトストアにオブジェクトを追加する。
+</li><li>transactionStore.remove(key) : 
+オブジェクトストアからオブジェクトを削除する。
+</li></ol><h2 id="%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB">サンプル</h2><pre><code class="prettyprint lang-">// store, other, anotherはいずれもGaviaのオブジェクトストアを意味する。
+store.transaction(function(store) {
+	store.add({
+		id: 123
+	});
+	store.remove(234);
+});
+
+store.transaction(other, another, function(store, other, another) {
+	store.add({
+		id: 123
+	});
+	other.remove(234);
+	another.add({
+		id: 123
+	});
+});
+
+store.tramsaction(other, function(other) {
+	store.add({
+		id: 123
+	});
+	other.remove(234);
+	return false; // ここで書かれた処理全体が取り消される。
+});
+</code></pre><h1 id="upper">upper</h1><p>lower &lt;= key となるオブジェクトを全て取得。
+</p><p><a href="store-fn-upperThan.html">upperThan</a>とは違い、境界を<strong>含む</strong>。
+</p><h2 id="%E3%82%B7%E3%82%B0%E3%83%8D%E3%83%81%E3%83%A3">シグネチャ</h2><pre><code class="prettyprint lang-">jQueryDeferred = gaviaStoreObject.upper(lower, {
+	direction: Gavia.Store.direction,  // optional
+	index: 'indexName',                // optional
+	offset: Number,                    // optional
+	limit: Number,                     // optional
+	count: Boolean                     // optional
+});
+</code></pre><h2 id="%E3%83%91%E3%83%A9%E3%83%A1%E3%83%BC%E3%82%BF">パラメータ</h2><table class="report">
+	<thead>
+		<tr>
+			<th>名前</th>
+			<th>概要</th>
+			<th>デフォルト値</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>lower</td>
+			<td>lower**以上**となるkeyを持つオブジェクトを取得する。</td>
+			<td>省略不可。</td>
+		<tr>
+		<tr>
+			<td>direction</td>
+			<td>オブジェクトを探索する方向を指定。
+			詳しくは<a href="store-fn-bound.html#Gavia.Store.direction">Gavia.Store.direction</a>を参照。
+			</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>index</td>
+			<td>indexを指定</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>offset</td>
+			<td>offset分、最初のオブジェクトを飛ばして取得。</td>
+			<td>0</td>
+		</tr>
+		<tr>
+			<td>limit</td>
+			<td>取得する最大数。</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>count</td>
+			<td>trueの場合、取得したオブジェクトの数を返す。</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+</table>
+<h2 id="%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB">サンプル</h2><pre><code class="prettyprint lang-">// gaviaStoreObject に 1 ~ 9のkeyを持つオブジェクトが存在すると仮定。
+gaviaStoreObject.upper(4).done(function(results) {
+	console.log(results); // 4 ~ 9
+});
+
+gaviaStoreObject.upper(4, {
+	direction: Gavia.Store.direction.prev
+}).done(function(results) {
+	console.log(results); // 9 ~ 4
+});
+
+gaviaStoreObject.upper(4, {
+	offset: 2,
+	limit: 2
+}).done(function(results) {
+	console.log(results); // 6 ~ 8
+});
+
+gaviaStoreObject.upper(4, {
+	count: true
+}).done(function(count) {
+	console.log(count); // 6
+});
+</code></pre><h1 id="upperThan">upperThan</h1><p>lower &lt; key となるオブジェクトを全て取得。
+</p><p><a href="store-fn-upper.html">upper</a>とは違い、境界を<strong>含まない</strong>。
+</p><h2 id="%E3%82%B7%E3%82%B0%E3%83%8D%E3%83%81%E3%83%A3">シグネチャ</h2><pre><code class="prettyprint lang-">jQueryDeferred = gaviaStoreObject.upperThan(lower, {
+	direction: Gavia.Store.direction,  // optional
+	index: 'indexName',                // optional
+	offset: Number,                    // optional
+	limit: Number,                     // optional
+	count: Boolean                     // optional
+});
+</code></pre><h2 id="%E3%83%91%E3%83%A9%E3%83%A1%E3%83%BC%E3%82%BF">パラメータ</h2><table class="report">
+	<thead>
+		<tr>
+			<th>名前</th>
+			<th>概要</th>
+			<th>デフォルト値</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>lower</td>
+			<td>lower**より上**となるkeyを持つオブジェクトを取得する。</td>
+			<td>省略不可。</td>
+		<tr>
+		<tr>
+			<td>direction</td>
+			<td>オブジェクトを探索する方向を指定。
+			詳しくは<a href="store-fn-bound.html#Gavia.Store.direction">Gavia.Store.direction</a>を参照。
+			</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>index</td>
+			<td>indexを指定</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>offset</td>
+			<td>offset分、最初のオブジェクトを飛ばして取得。</td>
+			<td>0</td>
+		</tr>
+		<tr>
+			<td>limit</td>
+			<td>取得する最大数。</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>count</td>
+			<td>trueの場合、取得したオブジェクトの数を返す。</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+</table>
+<h2 id="%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB">サンプル</h2><pre><code class="prettyprint lang-">// gaviaStoreObject に 1 ~ 9のkeyを持つオブジェクトが存在すると仮定。
+gaviaStoreObject.upperThan(4).done(function(results) {
+	console.log(results); // 5 ~ 9
+});
+
+gaviaStoreObject.upperThan(4, {
+	direction: Gavia.Store.direction.prev
+}).done(function(results) {
+	console.log(results); // 9 ~ 5
+});
+
+gaviaStoreObject.upperThan(4, {
+	offset: 2,
+	limit: 2
+}).done(function(results) {
+	console.log(results); // 7 ~ 9
+});
+
+gaviaStoreObject.upperThan(4, {
+	count: true
+}).done(function(count) {
+	console.log(count); // 5
+});
+</code></pre><h1 id="Gavia.Record.fn">Gavia.Record.fn</h1><p>オブジェクトストアに保存されるオブジェクトへのメソッド群はGavia.Record.fnに定義されています。  
+また、Gavia.Record.fnへ新たにユーザー定義メソッドを作ることも出来ます。  
+</p><h2 id="%E3%83%A1%E3%82%BD%E3%83%83%E3%83%89">メソッド</h2><table class="report">
+	<thead>
+		<tr>
+			<th>名前</th>
+			<th>概要</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>delete</td>
+			<td>そのオブジェクトが属するオブジェクトストアから、対象のオブジェクトを削除する。</td>
+		</tr>
+		<tr>
+			<td>save</td>
+			<td>そのオブジェクトが属するオブジェクトストアへ、対象のオブジェクトを保存する。</td>
+		</tr>
+		<tr>
+			<td>update</td>
+			<td>オブジェクトのプロパテイ群を更新する。
+			saveメソッドを実行するまで、プロパティの更新はDBへ更新されない。</td>
+		</tr>
+	</tbody>
+</table>
+<h2 id="%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB">サンプル</h2><pre><code class="prettyprint lang-">Gavia['sample-db']['sample-store']
+	.create(123)
+	.update({
+		name: 'Kokudori',
+		age: 20
+	}).save().done(function() {
+		console.log('create, update and save done');
+	});
+</code></pre><h1 id="delete">delete</h1><p>そのオブジェクトが属するオブジェクトストアから、対象のオブジェクトを削除する。
+</p><h2 id="%E3%82%B7%E3%82%B0%E3%83%8D%E3%83%81%E3%83%A3">シグネチャ</h2><pre><code class="prettyprint lang-">jQueryDeferred = gaviaRecordObject.delete(keyName); // optional keyName
+</code></pre><h2 id="%E3%83%91%E3%83%A9%E3%83%A1%E3%83%BC%E3%82%BF">パラメータ</h2><table class="report">
+	<thead>
+		<tr>
+			<th>名前</th>
+			<th>概要</th>
+			<th>デフォルト値</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>keyName</td>
+			<td>削除するオブジェクトのkeyとなるプロパティの名前。
+			keyPath、又はautoIncrementが指定されている場合は省略可能。</td>
+			<td></td>
+		</tr>
+	</tbody>
+</table>
+<h2 id="%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB">サンプル</h2><pre><code class="prettyprint lang-">gaviaRecordObject.delete().done(function() {
+	console.log('delete done');
+});
+
+gaviaRecordObject.delete('id').done(function() {
+	console.log('delete done');
+});
+</code></pre><h1 id="save">save</h1><p>そのオブジェクトが属するオブジェクトストアへ、対象のオブジェクトを保存する。
+</p><h2 id="%E3%82%B7%E3%82%B0%E3%83%8D%E3%83%81%E3%83%A3">シグネチャ</h2><pre><code class="prettyprint lang-">jQueryDeferred = gaviaRecordObject.save(key); // optional key
+</code></pre><h2 id="%E3%83%91%E3%83%A9%E3%83%A1%E3%83%BC%E3%82%BF">パラメータ</h2><table class="report">
+	<thead>
+		<tr>
+			<th>名前</th>
+			<th>概要</th>
+			<th>デフォルト値</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>key</td>
+			<td>保存するオブジェクトのkey。
+			keyPath、又はautoIncrementが指定されている場合は省略可能。</td>
+			<td></td>
+		</tr>
+	</tbody>
+</table>
+<h2 id="%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB">サンプル</h2><pre><code class="prettyprint lang-">gaviaRecordObject.save().done(function() {
+	console.log('save done');
+});
+
+gaviaRecordObject.save(123).done(function() {
+	console.log('save done');
+});
+</code></pre><h1 id="update">update</h1><p>オブジェクトのプロパテイ群を更新する。
+saveメソッドを実行するまで、プロパティの更新はDBへ更新されない。
+</p><h2 id="%E3%82%B7%E3%82%B0%E3%83%8D%E3%83%81%E3%83%A3">シグネチャ</h2><pre><code class="prettyprint lang-">gaviaRecordObject = gaviaRecordObject.update(properties);
+</code></pre><h2 id="%E3%83%91%E3%83%A9%E3%83%A1%E3%83%BC%E3%82%BF">パラメータ</h2><table class="report">
+	<thead>
+		<tr>
+			<th>名前</th>
+			<th>概要</th>
+			<th>デフォルト値</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>properties</td>
+			<td>更新するプロパテイ群。
+			プロパティ名とプロパティ値を指定。</td>
+			<td></td>
+		</tr>
+	</tbody>
+</table>
+<h2 id="%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB">サンプル</h2><pre><code class="prettyprint lang-">gaviaRecordObject.update({
+	hoge: 123,
+	piyo: 234
+});
+</code></pre><p>Document is built using the <a  href="https://github.com/n8han/pamflet">pamflet</a>.
+</p><p>pamflet is markdown to html generator by scala.</p>
+          </div>
+        </div>
+        <a class="fork nav" href="http://github.com/kokudori/gavia"><img alt="Fork me on GitHub" src="img/fork.png"></img></a>
+      </body>
+    </html>

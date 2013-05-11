@@ -1,0 +1,129 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html>
+      <head>
+        <title>Gavia — upperThan</title>
+        <link type="text/css" media="screen, projection" rel="stylesheet" href="css/blueprint/screen.css"></link>
+        <link type="text/css" media="screen and (min-device-width: 800px), projection" rel="stylesheet" href="css/blueprint/grid.css"></link>
+        <link type="text/css" media="print" rel="stylesheet" href="css/blueprint/print.css"></link> 
+        <!--[if lt IE 8]>
+          <link rel="stylesheet" href="css/blueprint/ie.css" type="text/css" media="screen, projection"/>
+        <![endif]-->
+        <link type="text/css" media="screen, projection" rel="stylesheet" href="css/pamflet.css"></link>
+        <link type="text/css" media="print" rel="stylesheet" href="css/pamflet-print.css"></link>
+        <link type="text/css" media="screen and (min-device-width: 800px), projection" rel="stylesheet" href="css/pamflet-grid.css"></link>
+        <link type="text/css" media="screen, projection" rel="stylesheet" href="css/custom.css"></link>
+        <script src="js/jquery-1.6.2.min.js"></script>
+        <script src="js/jquery.collapse.js"></script>
+        <script src="js/pamflet.js"></script>
+        <script type="text/javascript" src="js/prettify/prettify.js"></script><link type="text/css" rel="stylesheet" href="css/prettify.css"></link><script type="text/javascript"><!--
+        window.onload=function() { prettyPrint(); };
+      --></script>
+        <meta charset="utf-8"></meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+        
+      </head>
+      <body>
+        <a class="page prev nav" href="store-fn-upper.html">
+            <span class="space">&nbsp;</span>
+            <span class="flip">&gt;</span>
+          </a><a class="page next nav" href="gavia-record-fn.html">
+            <span class="space">&nbsp;</span>
+            <span>&gt;</span>
+          </a>
+        <div class="container">
+          <div class="span-16 prepend-1 append-1">
+            <div class="top nav span-16 title">
+              <span>Gavia</span> — upperThan
+            </div>
+          </div>
+          <div class="span-16 prepend-1 append-1 contents">
+            <h1 id="upperThan">upperThan</h1><p>lower &lt; key となるオブジェクトを全て取得。
+</p><p><a href="store-fn-upper.html">upper</a>とは違い、境界を<strong>含まない</strong>。
+</p><h2 id="%E3%82%B7%E3%82%B0%E3%83%8D%E3%83%81%E3%83%A3">シグネチャ</h2><pre><code class="prettyprint lang-">jQueryDeferred = gaviaStoreObject.upperThan(lower, {
+	direction: Gavia.Store.direction,  // optional
+	index: 'indexName',                // optional
+	offset: Number,                    // optional
+	limit: Number,                     // optional
+	count: Boolean                     // optional
+});
+</code></pre><h2 id="%E3%83%91%E3%83%A9%E3%83%A1%E3%83%BC%E3%82%BF">パラメータ</h2><table class="report">
+	<thead>
+		<tr>
+			<th>名前</th>
+			<th>概要</th>
+			<th>デフォルト値</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>lower</td>
+			<td>lower**より上**となるkeyを持つオブジェクトを取得する。</td>
+			<td>省略不可。</td>
+		<tr>
+		<tr>
+			<td>direction</td>
+			<td>オブジェクトを探索する方向を指定。
+			詳しくは<a href="store-fn-bound.html#Gavia.Store.direction">Gavia.Store.direction</a>を参照。
+			</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>index</td>
+			<td>indexを指定</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>offset</td>
+			<td>offset分、最初のオブジェクトを飛ばして取得。</td>
+			<td>0</td>
+		</tr>
+		<tr>
+			<td>limit</td>
+			<td>取得する最大数。</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>count</td>
+			<td>trueの場合、取得したオブジェクトの数を返す。</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+</table>
+<h2 id="%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB">サンプル</h2><pre><code class="prettyprint lang-">// gaviaStoreObject に 1 ~ 9のkeyを持つオブジェクトが存在すると仮定。
+gaviaStoreObject.upperThan(4).done(function(results) {
+	console.log(results); // 5 ~ 9
+});
+
+gaviaStoreObject.upperThan(4, {
+	direction: Gavia.Store.direction.prev
+}).done(function(results) {
+	console.log(results); // 9 ~ 5
+});
+
+gaviaStoreObject.upperThan(4, {
+	offset: 2,
+	limit: 2
+}).done(function(results) {
+	console.log(results); // 7 ~ 9
+});
+
+gaviaStoreObject.upperThan(4, {
+	count: true
+}).done(function(count) {
+	console.log(count); // 5
+});
+</code></pre><div class="bottom nav">
+                        <em>Next Page</em>
+                        <span class="arrow">&gt;</span>
+                        <a href="gavia-record-fn.html"> Gavia.Record.fn </a>
+                      </div><div class="tocwrapper show">
+      <a class="tochead nav" style="display: none" href="#toc">❦</a>
+      <a name="toc"></a>
+      <h4 class="toctitle">Contents</h4>
+      <div class="tocbody">
+      <div><a href="index.html">Gavia</a></div><ol class="toc"> <li><div><a href="gavia.html">Gavia</a></div><ol class="toc">  </ol></li><li><div><a href="gavia-store-fn.html">Gavia.Store.fn</a></div><ol class="toc"> <li><div><a href="store-fn-all.html">all</a></div></li><li><div><a href="store-fn-bound.html">bound</a></div></li><li><div><a href="store-fn-boundThan.html">boundThan</a></div></li><li><div><a href="store-fn-clear.html">clear</a></div></li><li><div><a href="store-fn-create.html">create</a></div></li><li><div><a href="store-fn-delete.html">delete</a></div></li><li><div><a href="store-fn-filter.html">filter</a></div></li><li><div><a href="store-fn-find.html">find</a></div></li><li><div><a href="store-fn-lower.html">lower</a></div></li><li><div><a href="store-fn-lowerThan.html">lowerThan</a></div></li><li><div><a href="store-fn-transaction.html">transaction</a></div></li><li><div><a href="store-fn-upper.html">upper</a></div></li><li><div class="current">upperThan</div></li> </ol></li><li><div><a href="gavia-record-fn.html">Gavia.Record.fn</a></div><ol class="toc"> <li><div><a href="record-fn-delete.html">delete</a></div></li><li><div><a href="record-fn-save.html">save</a></div></li><li><div><a href="record-fn-update.html">update</a></div></li> </ol></li><li><div><a href="Untitled.html">Untitled</a></div></li><li class="generated"><div><a href="Contents+in+Depth.html">Contents in Depth</a></div></li><li class="generated"><div><a href="Combined+Pages.html">Combined Pages</a></div></li> </ol></div></div>
+          </div>
+        </div>
+        <a class="fork nav" href="http://github.com/kokudori/gavia"><img alt="Fork me on GitHub" src="img/fork.png"></img></a>
+      </body>
+    </html>

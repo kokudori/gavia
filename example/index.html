@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title></title>
+	<link type="text/css" href="./css/bootstrap.css" rel="stylesheet" />
+	<link type="text/css" href="./css/app.css" rel="stylesheet" />
+</head>
+<body>
+	<div class="alert alert-success hide">
+		<button type="button" class="close" data-dismiss="alert">&times;</button>
+		<strong>Success!</strong> Created a new TODO.
+	</div>
+	<div class="alert alert-error hide">
+		<button type="button" class="close" data-dismiss="alert">&times;</button>
+		<strong>Error!</strong> Failed to create a new TODO.
+	</div>
+	<div class="alert alert-success hide">
+		<button type="button" class="close" data-dismiss="alert">&times;</button>
+		<strong>Success!</strong> Updated a TODO.
+	</div>
+	<div class="alert alert-error hide">
+		<button type="button" class="close" data-dismiss="alert">&times;</button>
+		<strong>Error!</strong> Failed to update a TODO.
+	</div>
+	<div class="alert alert-success hide">
+		<button type="button" class="close" data-dismiss="alert">&times;</button>
+		<strong>Success!</strong> Deleted a TODO.
+	</div>
+	<div class="alert alert-error hide">
+		<button type="button" class="close" data-dismiss="alert">&times;</button>
+		<strong>Error!</strong> Failed to delete a TODO.
+	</div>
+	<div class="alert alert-error hide">
+		<button type="button" class="close" data-dismiss="alert">&times;</button>
+		<strong>Error!</strong> Failed to get a TODO.
+	</div>
+
+	<h1>TODO App</h1>
+
+	<div id="content" class="row">
+		<div id="menu" class="span2 btn-group btn-group-vertical">
+			<button class="btn">Create</button>
+			<button class="btn disabled">Complete</button>
+			<button class="btn disabled">Delete</button>
+		</div>
+
+		<table id="main" class="span10 table table-hover"><tbody></tbody></table>
+	</div>
+
+	<div id="createTodo" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+			<h3>Create TODO</h3>
+		</div>
+		<div class="modal-body">
+			<div class="alert alert-warning hide">
+				<button type="button" class="close" data-dismiss="alert">&times;</button>
+				<strong>Warn!</strong> Required for name.
+			</div>
+			<label for="title">名前</label>
+			<input name="title" type="text" required />
+			<label for="memo">メモ</label>
+			<textarea name="memo"></textarea>
+		</div>
+		<div class="modal-footer">
+			<button class="btn btn-primary">Create</button>
+			<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+		</div>
+	</div>
+
+	<script id="todo-template" type="text/x-jquery-tmpl">
+		<tr class="todo">
+			<td><input type="checkbox" /></td>
+			<td><p>${name}</p></td>
+			<td><p>${memo}</p></td>
+			<td><p>${state}</p></td>
+			<td><i class="icon-remove-sign"></i></td>
+		</tr>
+	</script>
+
+	<script src="./js/jquery.js"></script>
+	<script src="./js/jquery.tmpl.js"></script>
+	<script src="./js/bootstrap.js"></script>
+	<script src="./js/Gavia.js"></script>
+	<script src="./js/app.js"></script>
+</body>
+</html>
