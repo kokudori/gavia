@@ -1,0 +1,105 @@
+---
+out: gavia.html
+---
+
+# Gavia
+
+DBを作成するにはGaviaコンストラクタを使います。  
+
+## シグネチャ
+```
+gaviaDBObject = new Gavia('DBName', version, {  // optional version
+	'ObjectStoreName': {
+		keyPath: 'keyName',           // optional
+		autoIncrement: Boolean,       // optional
+		index: {                      // optional
+			keyPath: 'indexKeyName',    // optional
+			name: 'indexName',          // optional
+			unique: Boolean,      // optional
+			multiEntry: Boolean   // optional
+		}
+	},
+	...
+})
+```
+
+## パラメータ
+<table class="report">
+	<thead>
+		<tr>
+			<th>名前</th>
+			<th>概要</th>
+			<th>デフォルト値</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>DBName</td>
+			<td>作成するDBの名前。
+			IndexedDB内で一意の文字列を指定。</td>
+			<td>省略不可</td>
+		</tr>
+		<tr>
+			<td>version</td>
+			<td>DBのバージョンを指定。
+			バージョンが上がるとオブジェクトストアの構成を変更する。</td>
+			<td>1</td>
+		</tr>
+		<tr>
+			<td>ObjectStoreName</td>
+			<td>作成するオブジェクトストアの名前。
+			DB内で一意の文字列を指定。</td>
+			<td>省略不可</td>
+		</tr>
+		<tr>
+			<td>keyPath</td>
+			<td>指定するオブジェクトストアの主キー。</td>
+			<td>省略するとオブジェクトの保存時にキーを指定する必要がある。</td>
+		</tr>
+		<tr>
+			<td>autoIncrement</td>
+			<td>オブジェクトを保存するたびにキー値を自動でインクリメントするかどうか。</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>index</td>
+			<td>オブジェクトストアのindexを指定。</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>index: keyPath</td>
+			<td>indexとなるプロパティの名前。</td>
+			<td>オブジェクトストアのkeyPath</td>
+		</tr>
+		<tr>
+			<td>index: name</td>
+			<td>作成するindexの名前。</td>
+			<td>indexのkeyPath。</td>
+		</tr>
+		<tr>
+			<td>index: unique</td>
+			<td>indexが一意かどうか。</td>
+			<td class="none"></td>
+		</tr>
+		<tr>
+			<td>index: multiEntry</td>
+			<td></td>
+			<td></td>
+		</tr>
+	</tbody>
+</table>
+
+作成したgaviaDBObjectへは`Gavia['DBName']`でも同様にアクセス出来ます。  
+また、gaviaDBObjectから個々のオブジェクトストアへも、
+オブジェクトストア名からプロパティアクセス可能です。
+
+## サンプル
+```
+var db = new Gavia('sample-db', {
+	'sample-store': {
+		keyPath: 'id'
+	}
+});
+assert(db === Gavia['sample-db']);
+db['sample-store']; // ストアオブジェクト
+```

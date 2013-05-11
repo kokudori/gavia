@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<title>Gavia Test</title>
+<link rel="stylesheet" href="../components/mocha/mocha.css">
+<div id="mocha"></div>
+<script src="../components/jquery/jquery.js"></script>
+<script src="../components/mocha/mocha.js"></script>
+<script src="../components/chai/chai.js"></script>
+<script src="../bin/Gavia.js"></script>
+<script src="/testem.js"></script>
+<script>
+var assert = chai.assert;
+mocha.setup('bdd');
+window.onload = mocha.run;
+</script>
+<script src="Gavia.js"></script>
+<script src="db/all.js"></script>
+<script src="db/delete.js"></script>
+<script src="store/bound.js"></script>
+<script src="store/boundThan.js"></script>
+<script src="store/count.js"></script>
+<script src="store/delete.js"></script>
+<script src="store/filter.js"></script>
+<script src="store/find.js"></script>
+<script src="store/lower.js"></script>
+<script src="store/lowerThan.js"></script>
+<script src="store/select.js"></script>
+<script src="store/transaction.js"></script>
+<script src="store/upper.js"></script>
+<script src="store/upperThan.js"></script>
+<script src="record/delete.js"></script>

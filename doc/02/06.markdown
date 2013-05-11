@@ -1,0 +1,36 @@
+---
+out: store-fn-delete.html
+---
+
+# delete
+オブジェクトストアから特定のオブジェクトを削除。
+
+## シグネチャ
+```
+jQueryDeferred = gaviaStoreObject.delete(key);
+```
+
+## パラメータ
+<table class="report">
+	<thead>
+		<tr>
+			<th>名前</th>
+			<th>概要</th>
+			<th>デフォルト値</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>key</td>
+			<td>削除したいオブジェクトのkey。</td>
+			<td>省略不可。</td>
+		</tr>
+	</tbody>
+</table>
+
+## サンプル
+```
+gaviaStoreObject.delete(123).done(function() {
+	console.log('delete done');
+});
+```

@@ -1,0 +1,77 @@
+---
+out: gavia-store-fn.html
+---
+
+# Gavia.Store.fn
+オブジェクトストアへのメソッド群はGavia.Store.fnに定義されています。  
+また、Gavia.Store.fnへ新たにユーザー定義メソッドを作ることも出来ます。  
+
+また、ほぼ全てのメソッドはjQueryDeferredを返します。  
+
+## メソッド
+<table class="report">
+	<thead>
+		<tr>
+			<th>名前</th>
+			<th>概要</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>all</td>
+			<td>全てのオブジェクトを取得。</td>
+		</tr>
+		<tr>
+			<td>bound</td>
+			<td>lower <= key <= upper となるオブジェクトを全て取得。</td>
+		</tr>
+		<tr>
+			<td>boundThan</td>
+			<td>lower < key < upper となるオブジェクトを全て取得。</td>
+		</tr>
+		<tr>
+			<td>clear</td>
+			<td>オブジェクトストアの全オブジェクトを削除。</td>
+		</tr>
+		<tr>
+			<td>create</td>
+			<td>新しくオブジェクトを作成。</td>
+		</tr>
+		<tr>
+			<td>delete</td>
+			<td>オブジェクトを削除</td>
+		</tr>
+		<tr>
+			<td>find</td>
+			<td>keyを元にオブジェクトを取得。</td>
+		</tr>
+		<tr>
+			<td>lower</td>
+			<td>key <= upper となるオブジェクトを全て取得。</td>
+		</tr>
+		<tr>
+			<td>lowerThan</td>
+			<td>key < upper となるオブジェクトを全て取得。</td>
+		</tr>
+		<tr>
+			<td>transaction</td>
+			<td>データの作成、削除を１つのトランザクション内で完結させる。</td>
+		</tr>
+		<tr>
+			<td>upper</td>
+			<td>lower <= key となるオブジェクトを全て取得。</td>
+		</tr>
+		<tr>
+			<td>upperThan</td>
+			<td>lower < key となるオブジェクトを全て取得。</td>
+		</tr>
+	</tbody>
+</table>
+
+## サンプル
+```
+Gavia['sample-db']['sample-store']
+	.find(10).done(function(result) {
+		console.log(result);
+	});
+```

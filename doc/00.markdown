@@ -1,0 +1,54 @@
+---
+out: index.html
+---
+
+# Gavia
+GaviaはIndexedDBのためのActiveRecord風ライブラリです。
+検索結果をjQueryDeferredで返すため、jQueryに依存しています。
+
+## LICENSE
+MIT LICENSE
+
+## Example
+```
+var db = new Gavia('test-db', {
+	store: {
+		keyPath: 'id',
+		autoIncrement: true,
+		index: {
+			unique: true
+		}
+	}
+});
+
+var test = db.store.create();
+test.hoge = 'hogehoge';
+test.save().done(function() {
+	console.log('save done');
+});
+
+db.store.filter(function(record) {
+	return record.hoge.length > 5;
+}).done(function(results) {
+	results.forEach(function(result) {
+		console.log(result);
+	});
+});
+```
+
+## More Example
+簡単なTODOアプリをGaviaを使って構築してみました。
+
+<p>
+<a href="http://kokudori.github.io/gavia/exmaple/index.html">http://kokudori.github.io/gavia/exmaple/index.html</a>
+</p>
+
+ソースはGistにて公開しています。
+
+<p>
+<a href="https://gist.github.com/kokudori/5559908">https://gist.github.com/kokudori/5559908</a>
+</p>
+
+<br />
+
+<script src="https://gist.github.com/kokudori/5559908.js"></script>

@@ -1,0 +1,39 @@
+---
+out: record-fn-update.html
+---
+
+# update
+オブジェクトのプロパテイ群を更新する。
+saveメソッドを実行するまで、プロパティの更新はDBへ更新されない。
+
+## シグネチャ
+```
+gaviaRecordObject = gaviaRecordObject.update(properties);
+```
+
+## パラメータ
+<table class="report">
+	<thead>
+		<tr>
+			<th>名前</th>
+			<th>概要</th>
+			<th>デフォルト値</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>properties</td>
+			<td>更新するプロパテイ群。
+			プロパティ名とプロパティ値を指定。</td>
+			<td></td>
+		</tr>
+	</tbody>
+</table>
+
+## サンプル
+```
+gaviaRecordObject.update({
+	hoge: 123,
+	piyo: 234
+});
+```

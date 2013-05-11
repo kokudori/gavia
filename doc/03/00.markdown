@@ -1,0 +1,44 @@
+---
+out: gavia-record-fn.html
+---
+
+# Gavia.Record.fn
+オブジェクトストアに保存されるオブジェクトへのメソッド群はGavia.Record.fnに定義されています。  
+また、Gavia.Record.fnへ新たにユーザー定義メソッドを作ることも出来ます。  
+
+## メソッド
+<table class="report">
+	<thead>
+		<tr>
+			<th>名前</th>
+			<th>概要</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>delete</td>
+			<td>そのオブジェクトが属するオブジェクトストアから、対象のオブジェクトを削除する。</td>
+		</tr>
+		<tr>
+			<td>save</td>
+			<td>そのオブジェクトが属するオブジェクトストアへ、対象のオブジェクトを保存する。</td>
+		</tr>
+		<tr>
+			<td>update</td>
+			<td>オブジェクトのプロパテイ群を更新する。
+			saveメソッドを実行するまで、プロパティの更新はDBへ更新されない。</td>
+		</tr>
+	</tbody>
+</table>
+
+## サンプル
+```
+Gavia['sample-db']['sample-store']
+	.create(123)
+	.update({
+		name: 'Kokudori',
+		age: 20
+	}).save().done(function() {
+		console.log('create, update and save done');
+	});
+```

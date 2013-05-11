@@ -1,0 +1,50 @@
+---
+out: store-fn-find.html
+---
+
+# find
+オブジェクトストアからkeyを元にオブジェクトを取得。
+
+## シグネチャ
+```
+jQueryDeferred = gaviaStoreObject.find(key, {
+	index: 'indexName'       // optional
+});
+```
+
+## パラメータ
+<table class="report">
+	<thead>
+		<tr>
+			<th>名前</th>
+			<th>概要</th>
+			<th>デフォルト値</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>key</td>
+			<td>探索対象のオブジェクトのkey。</td>
+			<td>省略不可</td>
+		</tr>
+		<tr>
+			<td>index</td>
+			<td>indexを指定</td>
+			<td></td>
+		</tr>
+	</tbody>
+</table>
+
+## サンプル
+```
+// gaviaStoreObject に 1 ~ 9のkeyを持つオブジェクトが存在すると仮定。
+gaviaStoreObject.find(123).done(function(result) {
+	console.log(result); // key が123のオブジェクト
+});
+
+gaviaStoreObject.find(123, {
+	index: 'id'
+}).done(function(result) {
+	console.log(result); // key が123のオブジェクト
+});
+```

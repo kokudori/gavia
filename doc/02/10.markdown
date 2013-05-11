@@ -1,0 +1,91 @@
+---
+out: store-fn-lowerThan.html
+---
+
+# lowerThan
+key < upper となるオブジェクトを全て取得。
+
+<a href="store-fn-lower.html">lower</a>とは違い、境界を**含まない**。
+
+## シグネチャ
+```
+jQueryDeferred = gaviaStoreObject.lowerThan(upper, {
+	direction: Gavia.Store.direction,  // optional
+	index: 'indexName',                // optional
+	offset: Number,                    // optional
+	limit: Number,                     // optional
+	count: Boolean                     // optional
+});
+```
+
+## パラメータ
+<table class="report">
+	<thead>
+		<tr>
+			<th>名前</th>
+			<th>概要</th>
+			<th>デフォルト値</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>upper</td>
+			<td>upper**より下**となるkeyを持つオブジェクトを取得する。</td>
+			<td>省略不可。</td>
+		<tr>
+		<tr>
+			<td>direction</td>
+			<td>オブジェクトを探索する方向を指定。
+			詳しくは<a href="store-fn-bound.html#Gavia.Store.direction">Gavia.Store.direction</a>を参照。
+			</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>index</td>
+			<td>indexを指定</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>offset</td>
+			<td>offset分、最初のオブジェクトを飛ばして取得。</td>
+			<td>0</td>
+		</tr>
+		<tr>
+			<td>limit</td>
+			<td>取得する最大数。</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>count</td>
+			<td>trueの場合、取得したオブジェクトの数を返す。</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+</table>
+
+## サンプル
+```
+// gaviaStoreObject に 1 ~ 9のkeyを持つオブジェクトが存在すると仮定。
+gaviaStoreObject.lowerThan(6).done(function(results) {
+	console.log(results); // 1 ~ 5
+});
+
+gaviaStoreObject.lowerThan(6, {
+	direction: Gavia.Store.direction.prev
+}).done(function(results) {
+	console.log(results); // 5 ~ 1
+});
+
+gaviaStoreObject.lowerThan(6, {
+	offset: 2,
+	limit: 2
+}).done(function(results) {
+	console.log(results); // 3 ~ 5
+});
+
+gaviaStoreObject.lowerThan(6, {
+	count: true
+}).done(function(count) {
+	console.log(count); // 5
+});
+```

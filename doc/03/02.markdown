@@ -1,0 +1,41 @@
+---
+out: record-fn-save.html
+---
+
+# save
+そのオブジェクトが属するオブジェクトストアへ、対象のオブジェクトを保存する。
+
+## シグネチャ
+```
+jQueryDeferred = gaviaRecordObject.save(key); // optional key
+```
+
+## パラメータ
+<table class="report">
+	<thead>
+		<tr>
+			<th>名前</th>
+			<th>概要</th>
+			<th>デフォルト値</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>key</td>
+			<td>保存するオブジェクトのkey。
+			keyPath、又はautoIncrementが指定されている場合は省略可能。</td>
+			<td></td>
+		</tr>
+	</tbody>
+</table>
+
+## サンプル
+```
+gaviaRecordObject.save().done(function() {
+	console.log('save done');
+});
+
+gaviaRecordObject.save(123).done(function() {
+	console.log('save done');
+});
+```
