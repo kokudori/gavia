@@ -4,16 +4,13 @@ var Record = function (store, db, prototype) {
 	
 	Object.defineProperties(this, {
 		store: {
-			value: Object.create(null, {
-				name: {
-					value: store.name
-				}
-			})
+			value: store
 		},
 		db: {
 			value: db
 		}
 	});
+
 	Object.keys(store).filter(function (option) {
 		return option === 'keyPath' || option === 'autoIncrement';
 	}).forEach(function (option) {
