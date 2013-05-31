@@ -570,6 +570,13 @@ Gavia.Record.fn.delete = function (keyName) {
 	};
 	return deferred.promise();
 };
+Gavia.Record.fn.isExist = function (keyName) {
+	var name = keyName || this.store.keyPath;
+	return this.store.find(this[name])
+		.then(function (record) {
+			return typeof record !== 'undefined';
+		});
+};
 var Record = function (store, db, prototype) {
 	if (!(this instanceof Record))
 		return new Record(store, db, prototype);
