@@ -75,6 +75,19 @@
 					assert(false);
 				});
 			});
+
+			it('into function', function (done) {
+				db.keyPath.find(3).then(function (record) {
+					return record.isExist(function (result) {
+						return result.id === record.id && typeof result.num === 'undefined';
+					});
+				}).done(function (exist) {
+					assert.equal(false, exist);
+					done();
+				}).fail(function () {
+					assert(false);
+				});
+			});
 		});
 	});
 }).apply(this);
