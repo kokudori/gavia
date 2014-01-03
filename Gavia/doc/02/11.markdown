@@ -1,0 +1,78 @@
+---
+out: store-fn-transaction.html
+---
+
+# transaction
+対象のオブジェクトストアへの複数の操作を１つのトランザクション内で行う。
+
+## シグネチャ
+```
+jQueryDeferred = gaviaStoreObject.transaction(store..., callback);
+```
+
+storeは複数指定可能。  
+callbackは引数の最後にしなければならない。  
+
+## パラメータ
+<table class="report">
+	<thead>
+		<tr>
+			<th>名前</th>
+			<th>概要</th>
+			<th>デフォルト値</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>store</td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>callback</td>
+			<td>トランザクション内で行う処理。
+			callbackへは、transactionに渡したstore...と同じだけの数のtransactionStoreオブジェクトが引数として渡される。
+			falseを返すと、transaction全体がabortされる。
+			</td>
+			<td></td>
+		</tr>
+	</tbody>
+</table>
+
+## transactionStore
+callbackに渡されるオブジェクト。
+storeに対して変更を行うメソッドが２つ用意されている。
+
+1. transactionStore.add(value) : 
+オブジェクトストアにオブジェクトを追加する。
+2. transactionStore.remove(key) : 
+オブジェクトストアからオブジェクトを削除する。
+
+## サンプル
+```
+// store, other, anotherはいずれもGaviaのオブジェクトストアを意味する。
+store.transaction(function(store) {
+	store.add({
+		id: 123
+	});
+	store.remove(234);
+});
+
+store.transaction(other, another, function(store, other, another) {
+	store.add({
+		id: 123
+	});
+	other.remove(234);
+	another.add({
+		id: 123
+	});
+});
+
+store.tramsaction(other, function(other) {
+	store.add({
+		id: 123
+	});
+	other.remove(234);
+	return false; // ここで書かれた処理全体が取り消される。
+});
+```

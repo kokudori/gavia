@@ -1,0 +1,32 @@
+{
+	"name": "Gavia",
+	"version": "0.0.2",
+	"description": "ActiveRecord for IndexedDB",
+	"readmeFilename": "README.md",
+	"main": "./Gavia.min.js",
+	"scripts": {
+		"pretest": "./node_modules/.bin/bower install",
+		"test": "./node_modules/.bin/testem ci -T 120"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/kokudori/gavia.git"
+	},
+	"bugs": {
+		"url": "http://github.com/kokudori/gavia/issues"
+	},
+	"author": {
+		"name": "Kokudori",
+		"email": "kokudori0912@gmail.com"
+	},
+	"license": "MIT",
+	"devDependencies": {
+		"grunt": "~0.4.2",
+		"grunt-contrib-uglify": "~0.2.7",
+		"grunt-contrib-jshint": "~0.8.0",
+		"grunt-contrib-watch": "~0.5.3",
+		"grunt-encase": "~0.0.3",
+		"bower": "~1.2.8",
+		"testem": "~0.6.2"
+	}
+}

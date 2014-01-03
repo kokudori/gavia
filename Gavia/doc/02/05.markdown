@@ -1,0 +1,37 @@
+---
+out: store-fn-create.html
+---
+
+# create
+オブジェクトを新しく作成。  
+saveするまでオブジェクトストアには保存されない。
+
+## シグネチャ
+```
+Object = gaviaStoreObject.create(key); // optional key
+```
+
+## パラメータ
+<table class="report">
+	<thead>
+		<tr>
+			<th>名前</th>
+			<th>概要</th>
+			<th>デフォルト値</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>key</td>
+			<td>keyPathを設定している場合は、作成時にkeyを設定する。</td>
+			<td>省略可能。</td>
+		</tr>
+	</tbody>
+</table>
+
+## サンプル
+```
+var obj = gaviaStoreObject.create();
+var obj2 = gaviaStoreObject.create(123);
+```
+

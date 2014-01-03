@@ -1,0 +1,20 @@
+---
+out: store-fn-clear.html
+---
+
+# clear
+
+オブジェクトストアに属するオブジェクトを全て削除する。
+
+## シグネチャ
+```
+jQueryDeferred = gaviaStoreObject.clear();
+```
+
+## サンプル
+```
+gaviaStoreObject.clear().done(function() {
+	console.log('clear done');
+});
+```
+

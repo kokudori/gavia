@@ -1,0 +1,31 @@
+{
+	"name": "Gavia",
+	"version": "0.0.2",
+	"description": "ActiveRecord for IndexedDB",
+	"main": "./Gavia.min.js",
+	"license": "MIT",
+	"keywords": [
+		"Gavia",
+		"IndexedDB",
+		"ActiveRecord"
+	],
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/kokudori/gavia.git"
+	},
+	"readmeFilename": "README.md",
+	"ignore": [
+		"**/.*",
+		"*.log",
+		"node_modules",
+		"bower_components",
+		"doc"
+	],
+	"dependencies": {
+		"jquery": "~2.0.0"
+	},
+	"devDependencies": {
+		"mocha": "~1.16.2",
+		"chai": "~1.8.1"
+	}
+}

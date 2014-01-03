@@ -1,0 +1,110 @@
+---
+out: store-fn-filter.html
+---
+
+# filter
+オブジェクトストアから、値もしくは述語関数にマッチするオブジェクトを返す。
+
+## シグネチャ
+```
+jQueryDeferred = gaviaStoreObject.filter(value, {
+	index: 'indexName',      // optional
+	offset: Number,          // optional
+	limit: Number,           // optional
+	count: Boolean           // optional
+});
+jQueryDeferred = gaviaStoreObject.filter(prediacte, {
+	index: 'indexName',      // optional
+	offset: Number,          // optional
+	limit: Number,           // optional
+	count: Boolean           // optional
+});
+```
+
+## パラメータ
+<table class="report">
+	<thead>
+		<tr>
+			<th>名前</th>
+			<th>概要</th>
+			<th>デフォルト値</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>value</td>
+			<td>keyと一致するオブジェクトを返す。</td>
+			<td>省略不可</td>
+		</tr>
+		<tr>
+			<td>predicate</td>
+			<td>述語関数。
+			関数がtrueを返した時に渡されていたオブジェクト群を返す。</td>
+			<td>省略不可</td>
+		</tr>
+		<tr>
+			<td>index</td>
+			<td>indexを指定</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>offset</td>
+			<td>offset分、最初のオブジェクトを飛ばして取得。</td>
+			<td>0</td>
+		</tr>
+		<tr>
+			<td>limit</td>
+			<td>取得する最大数。</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>count</td>
+			<td>trueの場合、取得したオブジェクトの数を返す。</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+</table>
+
+## サンプル
+```
+// gaviaStoreObject に 1 ~ 9のkeyを
+// idプロパティとして持つオブジェクトが存在すると仮定。
+gaviaStoreObject.filter(function(result) {
+	return result.id % 2 === 0;
+}).done(function(odd) {
+	console.log(odd); // id -> [2, 4, 6, 8]
+});
+
+gaviaStoreObject.filter(function(result) {
+	return result.id % 2 === 0;
+}, {
+	offset: 2,
+	limit: 2
+}).done(function(results) {
+	console.log(results); // id -> [4, 6]
+});
+
+gaviaStoreObject.filter(function(result) {
+	return result.id % 2 === 0;
+}, {
+	count: true
+}).done(function(count) {
+	console.log(count); // 4
+});
+
+gaviaStoreObject.filter(5).done(function(result) {
+	console.log(result); // id -> 5
+});
+
+gaviaStoreObject.filter(5, {
+	offset: 6
+}).done(function(result) {
+	console.log(result); // undefined
+});
+
+gaviaStoreObject.filter(5, {
+	count: true
+}).done(function(count) {
+	console.log(count); // 1
+});
+```
