@@ -6,7 +6,7 @@
 	"main": "./Gavia.min.js",
 	"scripts": {
 		"pretest": "./node_modules/.bin/bower install",
-		"test": "./node_modules/.bin/testem ci --launch Firefox -T 120"
+		"test": "./node_modules/.bin/testem ci --launch Firefox"
 	},
 	"repository": {
 		"type": "git",
