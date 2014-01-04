@@ -1,5 +1,5 @@
 bin/
 obj/
-bower_components/
+vendor/
 node_modules/
 *.log

@@ -7,13 +7,13 @@ out: store-fn-filter.html
 
 ## シグネチャ
 ```
-jQueryDeferred = gaviaStoreObject.filter(value, {
+deferred = gaviaStoreObject.filter(value, {
 	index: 'indexName',      // optional
 	offset: Number,          // optional
 	limit: Number,           // optional
 	count: Boolean           // optional
 });
-jQueryDeferred = gaviaStoreObject.filter(prediacte, {
+deferred = gaviaStoreObject.filter(prediacte, {
 	index: 'indexName',      // optional
 	offset: Number,          // optional
 	limit: Number,           // optional

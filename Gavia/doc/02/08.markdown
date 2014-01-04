@@ -7,7 +7,7 @@ out: store-fn-find.html
 
 ## シグネチャ
 ```
-jQueryDeferred = gaviaStoreObject.find(key, {
+deferred = gaviaStoreObject.find(key, {
 	index: 'indexName'       // optional
 });
 ```

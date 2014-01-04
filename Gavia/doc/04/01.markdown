@@ -1,0 +1,45 @@
+---
+out: gavia-deferred-when.html
+---
+
+# Gavia.Deferred.when
+複数のDeferredが全て成功するまで待つDeferredを返す。
+
+## シグネチャ
+```
+deferred = Gavia.Deferred.when(deferred1, deferred2, .. deferredN);
+```
+
+## パラメータ
+<table class="report">
+	<thead>
+		<tr>
+			<th>名前</th>
+			<th>概要</th>
+			<th>デフォルト値</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>deferredN</td>
+			<td>合成する各Deferredオブジェクト
+			promiseされていてもされていなくてもどちらでも良い。</td>
+			<td></td>
+		</tr>
+	</tbody>
+</table>
+
+## サンプル
+```
+Gavia.Deferred.when(deferred1, deferred2, deferred3)
+	.done(function(result1, result2, result3) {
+		console.log("全てのdeferredが成功");
+		// 各resultパラメータには対応するdeferredの成功値が格納されている
+	});
+
+Gavia.Deferred.when(deferred1, deferred2, deferred3)
+	.fail(function(result) {
+		console.log("いずれかのdeferredが失敗");
+		// resultパラメータは最初に失敗したdeferredの失敗値
+	});
+```

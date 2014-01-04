@@ -1,0 +1,23 @@
+---
+out: gavia-deferred-promise.html
+---
+
+# promise
+Deferredからpromise, resolve, rejectメソッドを削除したものを返す。  
+コールバックの登録のみを意図する場合に使用する。  
+GaviaのStore/Record APIは全てpromiseしたものを返している。
+
+## シグネチャ
+```
+promise = deferred.promise();
+```
+
+## サンプル
+```
+deferred
+	.resolve(value)
+	.promise()
+	.done(function(result) {
+		assert(result, value);
+	});
+```

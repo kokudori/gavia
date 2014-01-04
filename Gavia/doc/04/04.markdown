@@ -1,0 +1,51 @@
+---
+out: gavia-deferred-then.html
+---
+
+# then
+値もしくはDeferredを返す関数を渡す。  
+値を返した場合は成功値を合成、
+Deferredを返した場合はDeferredを合成する関数として振る舞う。
+
+## シグネチャ
+```
+deferredN = deferred1.then(deferred2).then(value);
+```
+
+## パラメータ
+<table class="report">
+	<thead>
+		<tr>
+			<th>名前</th>
+			<th>概要</th>
+			<th>デフォルト値</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>deferred2</td>
+			<td>deferred1に合成するdeferredオブジェクト。
+			deferredNはdeferred1とdeferred2がどちらも成功すると成功に、
+			どちらかもしくはどちらもが失敗すると失敗として扱われる。</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>value</td>
+			<td>deferred1の成功値に対する写像。</td>
+			<td></td>
+		</tr>
+	</tbody>
+</table>
+
+## サンプル
+```
+deferred
+	.then(value)
+	.then(otherDeferred)
+	.done(function(result) {
+		// deferred, otherDeferredのいずれもが成功
+	})
+	.fail(function(result) {
+		// deferred, otherDeferredのいずれかもしくはどちらかが失敗
+	})
+```

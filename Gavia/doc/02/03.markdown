@@ -9,7 +9,7 @@ out: store-fn-boundThan.html
 
 ## シグネチャ
 ```
-jQueryDeferred = gaviaStoreObject.boundThan(lower, upper, {
+deferred = gaviaStoreObject.boundThan(lower, upper, {
 	direction: Gavia.Store.direction,  // optional
 	index: 'indexName',                // optional
 	offset: Number,                    // optional

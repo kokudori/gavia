@@ -1,13 +1,16 @@
 {
 	"name": "Gavia",
-	"version": "0.0.3",
+	"version": "0.1.0",
 	"description": "ActiveRecord for IndexedDB",
-	"main": "./Gavia.min.js",
+	"main": "Gavia.min.js",
 	"license": "MIT",
 	"keywords": [
 		"Gavia",
 		"IndexedDB",
-		"ActiveRecord"
+		"ActiveRecord",
+		"Deferred",
+		"Asynchronous",
+		"Reactive"
 	],
 	"repository": {
 		"type": "git",
@@ -16,9 +19,8 @@
 	"readmeFilename": "README.md",
 	"ignore": [
 		"**/.*",
-		"*.log",
 		"node_modules",
-		"bower_components",
+		"vendor",
 		"doc"
 	],
 	"devDependencies": {

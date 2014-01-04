@@ -3,8 +3,11 @@ out: index.html
 ---
 
 # Gavia
-GaviaはIndexedDBのためのActiveRecord風ライブラリです。
-検索結果をjQueryDeferredで返すため、jQueryに依存しています。
+GaviaはIndexedDBのためのActiveRecord風ライブラリです。  
+検索結果をjQueryDeferred風のオリジナルDeferredオブジェクトで返すため、  
+コールバックを多用することなく宣言的かつ簡潔に処理を書くことが出来ます。
+
+依存関係もなく、GaviaのみでIndexedDBの処理を完結させることが出来ます。
 
 ## Getting Started
 ```
@@ -57,7 +60,3 @@ db.store.filter(function(record) {
 <p>
 <a href="https://gist.github.com/kokudori/5559908">https://gist.github.com/kokudori/5559908</a>
 </p>
-
-<br />
-
-<script src="https://gist.github.com/kokudori/5559908.js"></script>

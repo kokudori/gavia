@@ -1,0 +1,40 @@
+---
+out: gavia-deferred-reject.html
+---
+
+# reject
+Deferredに**失敗**値を渡す。  
+既にDeferredが成功、もしくは失敗している場合は無視される。  
+(promiseメソッドの返り値には存在しないメソッド)
+
+## シグネチャ
+```
+deferred = deferred.reject(value);
+```
+
+## パラメータ
+<table class="report">
+	<thead>
+		<tr>
+			<th>名前</th>
+			<th>概要</th>
+			<th>デフォルト値</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>value</td>
+			<td>deferredの失敗値</td>
+			<td></td>
+		</tr>
+	</tbody>
+</table>
+
+## サンプル
+```
+deferred
+	.reject(value)
+	.fail(function(result) {
+		assert(result, value);
+	});
+```

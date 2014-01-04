@@ -1,0 +1,39 @@
+---
+out: gavia-deferred-done.html
+---
+
+# done
+Deferredが**成功**した時に呼ばれる関数を登録するメソッド。  
+既に成功している場合は登録後すぐに呼ばれる。
+
+## シグネチャ
+```
+deferred = deferred.done(callback);
+```
+
+## パラメータ
+<table class="report">
+	<thead>
+		<tr>
+			<th>名前</th>
+			<th>概要</th>
+			<th>デフォルト値</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>callback</td>
+			<td>deferredが成功した時に呼ばれる関数。
+			deferredの成功値がパラメータに渡される。</td>
+			<td></td>
+		</tr>
+	</tbody>
+</table>
+
+## サンプル
+```
+deferred.done(function(result) {
+		console.log("deferredが成功");
+		// resultパラメータにはdeferredの成功値が格納されている
+	});
+```

@@ -1,0 +1,39 @@
+---
+out: gavia-deferred-fail.html
+---
+
+# fail
+Deferredが**失敗**した時に呼ばれる関数を登録するメソッド。  
+既に失敗している場合は登録後すぐに呼ばれる。
+
+## シグネチャ
+```
+deferred = deferred.fail(callback);
+```
+
+## パラメータ
+<table class="report">
+	<thead>
+		<tr>
+			<th>名前</th>
+			<th>概要</th>
+			<th>デフォルト値</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>callback</td>
+			<td>deferredが失敗した時に呼ばれる関数。
+			deferredの失敗値がパラメータに渡される。</td>
+			<td></td>
+		</tr>
+	</tbody>
+</table>
+
+## サンプル
+```
+deferred.fail(function(result) {
+		console.log("deferredが失敗");
+		// resultパラメータにはdeferredの失敗値が格納されている
+	});
+```

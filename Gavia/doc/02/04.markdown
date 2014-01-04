@@ -8,7 +8,7 @@ out: store-fn-clear.html
 
 ## シグネチャ
 ```
-jQueryDeferred = gaviaStoreObject.clear();
+deferred = gaviaStoreObject.clear();
 ```
 
 ## サンプル

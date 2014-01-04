@@ -8,7 +8,7 @@ out: store-fn-all.html
 
 ## シグネチャ
 ```
-jQueryDeferred = gaviaStoreObject.all({
+deferred = gaviaStoreObject.all({
 	index: 'indexName',  // optional
 	offset: Number,      // optional
 	limit: Number,       // optional

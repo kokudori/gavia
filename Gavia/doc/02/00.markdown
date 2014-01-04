@@ -6,7 +6,7 @@ out: gavia-store-fn.html
 オブジェクトストアへのメソッド群はGavia.Store.fnに定義されています。  
 また、Gavia.Store.fnへ新たにユーザー定義メソッドを作ることも出来ます。  
 
-また、ほぼ全てのメソッドはjQueryDeferredを返します。  
+また、ほぼ全てのメソッドはDeferredを返します。  
 
 ## メソッド
 <table class="report">

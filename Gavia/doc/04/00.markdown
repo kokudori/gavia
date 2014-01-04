@@ -1,0 +1,68 @@
+---
+out: gavia-deferred.html
+---
+
+# Gavia.Deferred
+jQueryDeferredライクな独自のDeferredオブジェクトです。  
+非同期処理を合成することが出来ます。  
+
+## メソッド
+<table class="report">
+	<thead>
+		<tr>
+			<th>名前</th>
+			<th>概要</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>Deferred.when</td>
+			<td>複数のDeferredが全て成功するまで待つDeferredを返す。</td>
+		</tr>
+		<tr>
+			<td>done</td>
+			<td>Deferredが**成功**した時に呼ばれる関数を登録するメソッド。
+			既に成功している場合は登録後すぐに呼ばれる。</td>
+		</tr>
+		<tr>
+			<td>fail</td>
+			<td>Deferredが**失敗**した時に呼ばれる関数を登録するメソッド。
+			既に失敗している場合は登録後すぐに呼ばれる。</td>
+		</tr>
+		<tr>
+			<td>then</td>
+			<td>値もしくはDeferredを返す関数を渡す。
+			値を返した場合は成功値を合成、
+			Deferredを返した場合はDeferredを合成する関数として振る舞う。</td>
+		</tr>
+		<tr>
+			<td>resolve\*</td>
+			<td>Deferredに**成功**値を渡す。
+			既にDeferredが成功、もしくは失敗している場合は無視される。</td>
+		</tr>
+		<tr>
+			<td>reject\*</td>
+			<td>Deferredに**失敗**値を渡す。
+			既にDeferredが成功、もしくは失敗している場合は無視される。</td>
+		</tr>
+		<tr>
+			<td>promise</td>
+			<td>Deferredからpromise, resolve, rejectメソッドを削除したものを返す。
+			コールバックの登録のみを意図する場合に使用する。
+			GaviaのStore/Record APIは全てpromiseしたものを返している。</td>
+		</tr>
+	</tbody>
+</table>
+
+\*: promiseメソッドの返り値には存在しないメソッド
+
+## サンプル
+```
+var deferred = new Gavia.Deferred().promise();
+deferred.then(function(value) {
+	return value + 1;
+}).done(function(value) {
+	assert(value, 2);
+});
+deferred.resolve(1);
+```

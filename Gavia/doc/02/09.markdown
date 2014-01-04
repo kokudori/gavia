@@ -9,7 +9,7 @@ key <= upper となるオブジェクトを全て取得。
 
 ## シグネチャ
 ```
-jQueryDeferred = gaviaStoreObject.lower(upper, {
+deferred = gaviaStoreObject.lower(upper, {
 	direction: Gavia.Store.direction,  // optional
 	index: 'indexName',                // optional
 	offset: Number,                    // optional

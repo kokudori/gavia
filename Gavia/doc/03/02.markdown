@@ -7,7 +7,7 @@ out: record-fn-save.html
 
 ## シグネチャ
 ```
-jQueryDeferred = gaviaRecordObject.save(key); // optional key
+deferred = gaviaRecordObject.save(key); // optional key
 ```
 
 ## パラメータ
