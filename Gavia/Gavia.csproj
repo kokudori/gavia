@@ -78,7 +78,8 @@
     <Content Include="src\store\find.js" />
     <Content Include="src\store\store.js" />
     <Content Include="src\store\transaction.js" />
-    <Content Include="src\util\deffered.js" />
+    <Content Include="src\util\deferred.js" />
+    <Content Include="src\util\extend.js" />
     <Content Include="src\util\indexedDB.js" />
     <Content Include="test\db\all.js" />
     <Content Include="test\db\delete.js" />
@@ -98,7 +99,7 @@
     <Content Include="test\store\transaction.js" />
     <Content Include="test\store\upper.js" />
     <Content Include="test\store\upperThan.js" />
-    <Content Include="test\util\deffered.js" />
+    <Content Include="test\util\deferred.js" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="package.json" />

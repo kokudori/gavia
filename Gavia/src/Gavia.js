@@ -1,8 +1,9 @@
 ﻿
 
-// TODO $(Gavia).on
-// TODO $(Gavia['DBName']).on
-// TODO $(Gavia['DBName']['StoreName']).on
+// catch the infomation about target notify
+// TODO Gavia.on
+// TODO Gavia['DBName'].on
+// TODO Gavia['DBName']['StoreName'].on
 
 
 var Gavia = function (name, version, stores) {

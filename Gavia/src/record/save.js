@@ -1,5 +1,5 @@
 ﻿Gavia.Record.fn.save = function (id) {
-	var Deferred = new Gavia.Deferred(),
+	var deferred = new Gavia.Deferred(),
 		request = indexedDB.open(this.db.name, this.db.version);
 	request.onsuccess = function (event) {
 		var result,
@@ -19,21 +19,21 @@
 			result = event.target.result;
 		};
 		store.transaction.oncomplete = function () {
-			Deferred.resolve(result);
+			deferred.resolve(result);
 			db.close();
 		};
 		store.transaction.onerror = function (event) {
-			Deferred.reject();
+			deferred.reject();
 			db.close();
 		};
 	}.bind(this);
 	request.onerror = function (event) {
 		var db = event.target.result;
-		Deferred.reject();
+		deferred.reject();
 		db.close();
 	}.bind(this);
 	return Object.defineProperty(this, 'promise', {
 		writable: true,
-		value: Deferred.promise()
+		value: deferred.promise()
 	});
 };

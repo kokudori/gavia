@@ -2,9 +2,10 @@
 'use strict';
 
 
-// TODO $(Gavia).on
-// TODO $(Gavia['DBName']).on
-// TODO $(Gavia['DBName']['StoreName']).on
+// catch the infomation about target notify
+// TODO Gavia.on
+// TODO Gavia['DBName'].on
+// TODO Gavia['DBName']['StoreName'].on
 
 
 var Gavia = function (name, version, stores) {
@@ -324,7 +325,7 @@ Gavia.Store.fn.all = function (option) {
 			return true;
 		}, option);
 	}
-	var Deferred = new Gavia.Deferred(),
+	var deferred = new Gavia.Deferred(),
 		request = indexedDB.open(this.db.name, this.db.version);
 	option = extend({
 		index: null,
@@ -343,22 +344,22 @@ Gavia.Store.fn.all = function (option) {
 				limit = option.limit || value;
 			value = option.offset > value ? 0 : value - option.offset;
 			value = limit >= value ? value : limit;
-			Deferred.resolve(value);
+			deferred.resolve(value);
 			db.close();
 		}.bind(this);
 		result.onerror = function (event) {
 			var db = event.target.result;
-			Deferred.reject(key);
+			deferred.reject(key);
 			db.close();
 		};
 		db.close();
 	}.bind(this);
 	request.onerror = function (event) {
 		var db = event.target.result;
-		Deferred.reject();
+		deferred.reject();
 		db.close();
 	};
-	return Deferred.promise();
+	return deferred.promise();
 };
 var compare = function (context, value, mode, option, ext) {
 	var results = [];
@@ -400,27 +401,27 @@ Gavia.Store.fn.boundThan = function (left, right, option) {
 	return compare(this, left, 'boundThan', option, right);
 };
 Gavia.Store.fn.clear = function () {
-	var Deferred = new Gavia.Deferred(),
+	var deferred = new Gavia.Deferred(),
 		request = indexedDB.open(this.db.name, this.db.version);
 	request.onsuccess = function (event) {
 		var db = event.target.result,
 			transaction = db.transaction([this.name], 'readwrite'),
 			request = transaction.objectStore(this.name).clear();
 		request.onsuccess = function () {
-			Deferred.resolve();
+			deferred.resolve();
 			db.close();
 		};
 		request.onerror = function (event) {
-			Deferred.reject();
+			deferred.reject();
 			db.close();
 		};
 	}.bind(this);
 	request.onerror = function (event) {
 		var db = event.target.result;
-		Deferred.reject();
+		deferred.reject();
 		db.close();
 	};
-	return Deferred.promise();
+	return deferred.promise();
 };
 Gavia.Store.fn.create = function (key) {
 	var record = Record(this, this.db, this.fn);
@@ -458,12 +459,12 @@ Store.getKeyRange = function (mode, left, right) {
 		case 'filter':
 			return null;
 		default:
-			throw 'no match';
+			throw 'no match key range';
 	}
 };
 
 Store.fetch = function (context, mode, value, callback, option, ext) {
-	var Deferred = new Gavia.Deferred(),
+	var deferred = new Gavia.Deferred(),
 		request = indexedDB.open(context.db.name, context.db.version);
 	option = extend({
 		direction: Gavia.Store.direction.next,
@@ -487,11 +488,11 @@ Store.fetch = function (context, mode, value, callback, option, ext) {
 					limit = option.limit || value;
 				value = option.offset > value ? 0 : value - option.offset;
 				value = limit >= value ? value : limit;
-				Deferred.resolve(value);
+				deferred.resolve(value);
 				db.close();
 			};
 			request.onerror = function () {
-				Deferred.reject();
+				deferred.reject();
 				db.close();
 			};
 			return;
@@ -501,23 +502,23 @@ Store.fetch = function (context, mode, value, callback, option, ext) {
 			var cursor = event.target.result,
 				result = callback(cursor, count, option);
 			if (typeof result === 'function') {
-				Deferred.resolve(result());
+				deferred.resolve(result());
 				db.close();
 				return;
 			}
 			count += 1;
 		};
 		request.onerror = function () {
-			Deferred.reject();
+			deferred.reject();
 			db.close();
 		};
 	};
 	request.onerror = function (event) {
 		var db = event.target.result;
-		Deferred.reject();
+		deferred.reject();
 		db.close();
 	};
-	return Deferred.promise();
+	return deferred.promise();
 };
 Gavia.Store.fn.filter = function (predicate, option) {
 	var self = this,
@@ -568,7 +569,7 @@ Gavia.Store.fn.filter = function (predicate, option) {
 	}, option);
 };
 Gavia.Store.fn.find = function (key, option) {
-	var Deferred = new Gavia.Deferred(),
+	var deferred = new Gavia.Deferred(),
 		request = indexedDB.open(this.db.name, this.db.version);
 	request.onsuccess = function (event) {
 		var result,
@@ -580,25 +581,25 @@ Gavia.Store.fn.find = function (key, option) {
 		result.onsuccess = function (event) {
 			var value = event.target.result;
 			if (typeof value === 'undefined') {
-				Deferred.resolve(value);
+				deferred.resolve(value);
 				db.close();
 				return;
 			}
-			Deferred.resolve(this.create().update(value));
+			deferred.resolve(this.create().update(value));
 			db.close();
 		}.bind(this);
 		result.onerror = function (event) {
 			var db = event.target.result;
-			Deferred.reject(key);
+			deferred.reject(key);
 			db.close();
 		};
 	}.bind(this);
 	request.onerror = function (event) {
 		var db = event.target.result;
-		Deferred.reject(key);
+		deferred.reject(key);
 		db.close();
 	};
-	return Deferred.promise();
+	return deferred.promise();
 };
 var transaction = function (store) {
 	return {
@@ -626,7 +627,7 @@ Gavia.Store.fn.transaction = function () {
 	var args = [].slice.apply(arguments),
 		stores = [this].concat(args.splice(0, args.length - 1)),
 		callback = args[args.length - 1],
-		Deferred = new Gavia.Deferred(),
+		deferred = new Gavia.Deferred(),
 		request = indexedDB.open(this.db.name, this.db.version);
 	request.onsuccess = function (event) {
 		var db = event.target.result,
@@ -638,14 +639,14 @@ Gavia.Store.fn.transaction = function () {
 				return transaction(tx.objectStore(store.name));
 			}));
 		tx.oncomplete = function () {
-			Deferred.resolve();
+			deferred.resolve();
 			db.close();
 		};
 		tx.onerror = function () {
 			if (abort !== false)
-				Deferred.reject();
+				deferred.reject();
 			else
-				Deferred.resolve();
+				deferred.resolve();
 			db.close();
 		};
 		if (abort === false)
@@ -653,14 +654,14 @@ Gavia.Store.fn.transaction = function () {
 	}.bind(this);
 	request.onerror = function (event) {
 		var db = event.target.result;
-		Deferred.reject();
+		deferred.reject();
 		db.close();
 	};
-	return Deferred.promise();
+	return deferred.promise();
 };
 Gavia.Record.fn.delete = function (keyName) {
 	var request,
-		Deferred = new Gavia.Deferred(),
+		deferred = new Gavia.Deferred(),
 		key = (function () {
 			if (this.store.keyPath)
 				return this[this.store.keyPath];
@@ -670,8 +671,8 @@ Gavia.Record.fn.delete = function (keyName) {
 				return this[keyName];
 		}).apply(this);
 	if (!key) {
-		Deferred.reject('key does not setting.');
-		return Deferred.promise();
+		deferred.reject('key does not setting.');
+		return deferred.promise();
 	}
 
 	request = indexedDB.open(this.db.name, this.db.version);
@@ -680,20 +681,20 @@ Gavia.Record.fn.delete = function (keyName) {
 			store = db.transaction([this.store.name], 'readwrite').objectStore(this.store.name);
 		store.delete(key);
 		store.transaction.oncomplete = function () {
-			Deferred.resolve(key);
+			deferred.resolve(key);
 			db.close();
 		};
 		store.transaction.onerror = function (event) {
-			Deferred.reject(key);
+			deferred.reject(key);
 			db.close();
 		};
 	}.bind(this);
 	request.onerror = function (event) {
 		var db = event.target.result;
-		Deferred.reject();
+		deferred.reject();
 		db.close();
 	};
-	return Deferred.promise();
+	return deferred.promise();
 };
 Gavia.Record.fn.isExist = function (keyName) {
 	var name = keyName || this.store.keyPath;
@@ -736,7 +737,7 @@ var Record = function (store, db, prototype) {
 Record.prototype = Gavia.Record.fn;
 
 Gavia.Record.fn.save = function (id) {
-	var Deferred = new Gavia.Deferred(),
+	var deferred = new Gavia.Deferred(),
 		request = indexedDB.open(this.db.name, this.db.version);
 	request.onsuccess = function (event) {
 		var result,
@@ -756,22 +757,22 @@ Gavia.Record.fn.save = function (id) {
 			result = event.target.result;
 		};
 		store.transaction.oncomplete = function () {
-			Deferred.resolve(result);
+			deferred.resolve(result);
 			db.close();
 		};
 		store.transaction.onerror = function (event) {
-			Deferred.reject();
+			deferred.reject();
 			db.close();
 		};
 	}.bind(this);
 	request.onerror = function (event) {
 		var db = event.target.result;
-		Deferred.reject();
+		deferred.reject();
 		db.close();
 	}.bind(this);
 	return Object.defineProperty(this, 'promise', {
 		writable: true,
-		value: Deferred.promise()
+		value: deferred.promise()
 	});
 };
 Gavia.Record.fn.update = function (properties) {

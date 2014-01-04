@@ -17,12 +17,12 @@ Store.getKeyRange = function (mode, left, right) {
 		case 'filter':
 			return null;
 		default:
-			throw 'no match';
+			throw 'no match key range';
 	}
 };
 
 Store.fetch = function (context, mode, value, callback, option, ext) {
-	var Deferred = new Gavia.Deferred(),
+	var deferred = new Gavia.Deferred(),
 		request = indexedDB.open(context.db.name, context.db.version);
 	option = extend({
 		direction: Gavia.Store.direction.next,
@@ -46,11 +46,11 @@ Store.fetch = function (context, mode, value, callback, option, ext) {
 					limit = option.limit || value;
 				value = option.offset > value ? 0 : value - option.offset;
 				value = limit >= value ? value : limit;
-				Deferred.resolve(value);
+				deferred.resolve(value);
 				db.close();
 			};
 			request.onerror = function () {
-				Deferred.reject();
+				deferred.reject();
 				db.close();
 			};
 			return;
@@ -60,21 +60,21 @@ Store.fetch = function (context, mode, value, callback, option, ext) {
 			var cursor = event.target.result,
 				result = callback(cursor, count, option);
 			if (typeof result === 'function') {
-				Deferred.resolve(result());
+				deferred.resolve(result());
 				db.close();
 				return;
 			}
 			count += 1;
 		};
 		request.onerror = function () {
-			Deferred.reject();
+			deferred.reject();
 			db.close();
 		};
 	};
 	request.onerror = function (event) {
 		var db = event.target.result;
-		Deferred.reject();
+		deferred.reject();
 		db.close();
 	};
-	return Deferred.promise();
+	return deferred.promise();
 };

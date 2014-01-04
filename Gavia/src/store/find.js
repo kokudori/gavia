@@ -1,5 +1,5 @@
 ﻿Gavia.Store.fn.find = function (key, option) {
-	var Deferred = new Gavia.Deferred(),
+	var deferred = new Gavia.Deferred(),
 		request = indexedDB.open(this.db.name, this.db.version);
 	request.onsuccess = function (event) {
 		var result,
@@ -11,23 +11,23 @@
 		result.onsuccess = function (event) {
 			var value = event.target.result;
 			if (typeof value === 'undefined') {
-				Deferred.resolve(value);
+				deferred.resolve(value);
 				db.close();
 				return;
 			}
-			Deferred.resolve(this.create().update(value));
+			deferred.resolve(this.create().update(value));
 			db.close();
 		}.bind(this);
 		result.onerror = function (event) {
 			var db = event.target.result;
-			Deferred.reject(key);
+			deferred.reject(key);
 			db.close();
 		};
 	}.bind(this);
 	request.onerror = function (event) {
 		var db = event.target.result;
-		Deferred.reject(key);
+		deferred.reject(key);
 		db.close();
 	};
-	return Deferred.promise();
+	return deferred.promise();
 };

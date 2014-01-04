@@ -24,7 +24,7 @@ Gavia.Store.fn.transaction = function () {
 	var args = [].slice.apply(arguments),
 		stores = [this].concat(args.splice(0, args.length - 1)),
 		callback = args[args.length - 1],
-		Deferred = new Gavia.Deferred(),
+		deferred = new Gavia.Deferred(),
 		request = indexedDB.open(this.db.name, this.db.version);
 	request.onsuccess = function (event) {
 		var db = event.target.result,
@@ -36,14 +36,14 @@ Gavia.Store.fn.transaction = function () {
 				return transaction(tx.objectStore(store.name));
 			}));
 		tx.oncomplete = function () {
-			Deferred.resolve();
+			deferred.resolve();
 			db.close();
 		};
 		tx.onerror = function () {
 			if (abort !== false)
-				Deferred.reject();
+				deferred.reject();
 			else
-				Deferred.resolve();
+				deferred.resolve();
 			db.close();
 		};
 		if (abort === false)
@@ -51,8 +51,8 @@ Gavia.Store.fn.transaction = function () {
 	}.bind(this);
 	request.onerror = function (event) {
 		var db = event.target.result;
-		Deferred.reject();
+		deferred.reject();
 		db.close();
 	};
-	return Deferred.promise();
+	return deferred.promise();
 };
