@@ -16,22 +16,6 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
   </PropertyGroup>
-  <ItemGroup>
-    <Content Include="app.css" />
-    <Content Include="default.htm" />
-    <Content Include="web.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <TypeScriptCompile Include="app.ts" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="web.Debug.config">
-      <DependentUpon>web.config</DependentUpon>
-    </None>
-    <None Include="web.Release.config">
-      <DependentUpon>web.config</DependentUpon>
-    </None>
-  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -71,5 +55,84 @@
     <TypeScriptSourceMap>false</TypeScriptSourceMap>
     <TypeScriptModuleKind>AMD</TypeScriptModuleKind>
   </PropertyGroup>
+  <ItemGroup>
+    <Content Include="doc\custom.css" />
+    <Content Include="Gavia.js" />
+    <Content Include="Gavia.min.js" />
+    <Content Include="Gruntfile.js" />
+    <Content Include="src\db\all.js" />
+    <Content Include="src\db\delete.js" />
+    <Content Include="src\Gavia.js" />
+    <Content Include="src\record\delete.js" />
+    <Content Include="src\record\isexist.js" />
+    <Content Include="src\record\record.js" />
+    <Content Include="src\record\save.js" />
+    <Content Include="src\record\update.js" />
+    <Content Include="src\store\all.js" />
+    <Content Include="src\store\bound.js" />
+    <Content Include="src\store\clear.js" />
+    <Content Include="src\store\create.js" />
+    <Content Include="src\store\delete.js" />
+    <Content Include="src\store\fetch.js" />
+    <Content Include="src\store\filter.js" />
+    <Content Include="src\store\find.js" />
+    <Content Include="src\store\store.js" />
+    <Content Include="src\store\transaction.js" />
+    <Content Include="src\util\deffered.js" />
+    <Content Include="src\util\indexedDB.js" />
+    <Content Include="test\db\all.js" />
+    <Content Include="test\db\delete.js" />
+    <Content Include="test\Gavia.js" />
+    <Content Include="test\index.html" />
+    <Content Include="test\record\delete.js" />
+    <Content Include="test\record\isexist.js" />
+    <Content Include="test\store\bound.js" />
+    <Content Include="test\store\boundThan.js" />
+    <Content Include="test\store\count.js" />
+    <Content Include="test\store\delete.js" />
+    <Content Include="test\store\filter.js" />
+    <Content Include="test\store\find.js" />
+    <Content Include="test\store\lower.js" />
+    <Content Include="test\store\lowerThan.js" />
+    <Content Include="test\store\select.js" />
+    <Content Include="test\store\transaction.js" />
+    <Content Include="test\store\upper.js" />
+    <Content Include="test\store\upperThan.js" />
+    <Content Include="test\util\deffered.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="package.json" />
+    <Content Include="testem.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bower.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="test\README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="doc\00.markdown" />
+    <Content Include="doc\01\00.markdown" />
+    <Content Include="doc\02\00.markdown" />
+    <Content Include="doc\02\01.markdown" />
+    <Content Include="doc\02\02.markdown" />
+    <Content Include="doc\02\03.markdown" />
+    <Content Include="doc\02\04.markdown" />
+    <Content Include="doc\02\05.markdown" />
+    <Content Include="doc\02\06.markdown" />
+    <Content Include="doc\02\07.markdown" />
+    <Content Include="doc\02\08.markdown" />
+    <Content Include="doc\02\09.markdown" />
+    <Content Include="doc\02\10.markdown" />
+    <Content Include="doc\02\11.markdown" />
+    <Content Include="doc\02\12.markdown" />
+    <Content Include="doc\02\13.markdown" />
+    <Content Include="doc\03\00.markdown" />
+    <Content Include="doc\03\01.markdown" />
+    <Content Include="doc\03\02.markdown" />
+    <Content Include="doc\03\03.markdown" />
+    <Content Include="doc\README.md" />
+    <Content Include="doc\template.properties" />
+  </ItemGroup>
   <Import Project="$(VSToolsPath)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(VSToolsPath)\TypeScript\Microsoft.TypeScript.targets')" />
 </Project>

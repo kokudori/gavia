@@ -8,8 +8,8 @@ module.exports = function (grunt) {
 				separator: '\n',
 				useStrict: true,
 				src: [
-					'src/util/*.js',
 					'src/Gavia.js',
+					'src/util/*.js',
 					'src/db/*.js',
 					'src/store/store.js',
 					'src/store/*.js',
