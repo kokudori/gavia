@@ -12,7 +12,21 @@
 		this.fails = [];
 	};
 	Deffered.when = function () {
-		// TODO implemented
+		var deffereds = arguments[0] instanceof Array
+				? arguments[0]
+				: [].slice.apply(arguments),
+			count = deffereds.length,
+			_deffered = new Deffered();
+		deffereds.forEach(function (deffered) {
+			deffered.done(function () {
+				count -= 1;
+				if (count === 0)
+					_deffered.resolve();
+			}).fail(function () {
+				_deffered.reject.apply(_deffered, arguments);
+			});
+		});
+		return _deffered;
 	};
 	Deffered.prototype = {
 		resolve: function () {

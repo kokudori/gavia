@@ -46,10 +46,30 @@
 			});
 			deffered.resolve(1);
 		});
+		it('#when if success', function (done) {
+			var _deffered = new Gavia.Deffered();
+			Gavia.Deffered.when(deffered, _deffered).done(function () {
+				done();
+			}).fail(function () {
+				assert(false);
+			});
+			deffered.resolve();
+			_deffered.resolve();
+		});
+		it('#when if fail', function (done) {
+			var _deffered = new Gavia.Deffered();
+			Gavia.Deffered.when(deffered, _deffered).done(function () {
+				assert(false);
+			}).fail(function () {
+				done();
+			});
+			deffered.resolve();
+			_deffered.reject();
+		});
 		it('promise', function (done) {
 			var promise = deffered.promise();
-			assert(typeof promise.resolve === "undefined");
-			assert(typeof promise.reject === "undefined");
+			assert(typeof promise.resolve === 'undefined');
+			assert(typeof promise.reject === 'undefined');
 			promise.done(function (value) {
 				assert.equal(value, 100);
 				done();
