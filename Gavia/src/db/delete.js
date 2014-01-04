@@ -1,5 +1,5 @@
 Gavia.prototype.delete = function () {
-	var deferred = $.Deferred(),
+	var deferred = new Gavia.Deferred(),
 		request = indexedDB.deleteDatabase(this.name);
 	request.onsuccess = function () {
 		deferred.resolve(this.name);

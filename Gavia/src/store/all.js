@@ -4,9 +4,9 @@ Gavia.Store.fn.all = function (option) {
 			return true;
 		}, option);
 	}
-	var deferred = $.Deferred(),
+	var Deferred = new Gavia.Deferred(),
 		request = indexedDB.open(this.db.name, this.db.version);
-	option = $.extend({
+	option = extend({
 		index: null,
 		offset: 0,
 		limit: null
@@ -23,20 +23,20 @@ Gavia.Store.fn.all = function (option) {
 				limit = option.limit || value;
 			value = option.offset > value ? 0 : value - option.offset;
 			value = limit >= value ? value : limit;
-			deferred.resolve(value);
+			Deferred.resolve(value);
 			db.close();
 		}.bind(this);
 		result.onerror = function (event) {
 			var db = event.target.result;
-			deferred.reject(key);
+			Deferred.reject(key);
 			db.close();
 		};
 		db.close();
 	}.bind(this);
 	request.onerror = function (event) {
 		var db = event.target.result;
-		deferred.reject();
+		Deferred.reject();
 		db.close();
 	};
-	return deferred.promise();
+	return Deferred.promise();
 };

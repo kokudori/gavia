@@ -1,73 +1,69 @@
 ﻿(function () {
 	'use strict';
-	var deffered;
+	var deferred;
 
-	describe('Deffered', function () {
+	describe('Deferred', function () {
 		beforeEach(function (done) {
-			deffered = new Gavia.Deffered();
+			deferred = new Gavia.Deferred();
 			done();
 		});
 
 		it('done', function (done) {
-			deffered.fail(function () {
+			deferred.fail(function () {
 				assert(false);
 			}).done(function (value, other) {
 				assert.equal(value, 1);
 				assert.equal(other, 2);
 				done();
 			});
-			deffered.resolve(1, 2);
+			deferred.resolve(1, 2);
 		});
 		it('fail', function (done) {
-			deffered.done(function () {
+			deferred.done(function () {
 				assert(false);
 			}).fail(function (value, other) {
 				assert.equal(value, 1);
 				assert.equal(other, 2);
 				done();
 			});
-			deffered.reject(1, 2);
+			deferred.reject(1, 2);
 		});
 		it('then', function (done) {
-			var _deffered = new Gavia.Deffered();
-			deffered.then(function (value) {
+			deferred.then(function (value) {
 				return value + 1;
 			}).then(function (value) {
 				assert.equal(value, 2);
-				setTimeout(function () {
-					_deffered.resolve(value + 1);
-				}, 10);
-				return _deffered.promise();
+				return new Gavia.Deferred().resolve(value + 1).promise();
 			}).done(function (value) {
 				assert.equal(value, 3);
 				done();
 			}).fail(function () {
 				assert(false);
 			});
-			deffered.resolve(1);
+			deferred.resolve(1);
 		});
 		it('#when if success', function (done) {
-			var _deffered = new Gavia.Deffered();
-			Gavia.Deffered.when(deffered, _deffered).done(function () {
+			var _deferred = new Gavia.Deferred();
+			Gavia.Deferred.when(deferred, _deferred).done(function () {
 				done();
 			}).fail(function () {
 				assert(false);
 			});
-			deffered.resolve();
-			_deffered.resolve();
+			deferred.resolve();
+			_deferred.resolve();
 		});
 		it('#when if fail', function (done) {
-			var _deffered = new Gavia.Deffered();
-			Gavia.Deffered.when(deffered, _deffered).done(function () {
+			var _deferred = new Gavia.Deferred();
+			Gavia.Deferred.when(deferred, _deferred).done(function () {
 				assert(false);
 			}).fail(function () {
 				done();
 			});
-			deffered.resolve();
-			_deffered.reject();
+			deferred.resolve();
+			_deferred.reject();
 		});
 		it('promise', function (done) {
-			var promise = deffered.promise();
+			var promise = deferred.promise();
 			assert(typeof promise.resolve === 'undefined');
 			assert(typeof promise.reject === 'undefined');
 			promise.done(function (value) {
@@ -76,31 +72,25 @@
 			}).fail(function () {
 				assert(false);
 			});
-			deffered.resolve(100);
+			deferred.resolve(100);
 		});
 		it('resolve', function (done) {
-			deffered.resolve();
-			deffered.done(function () {
-				assert(false);
+			deferred.resolve();
+			deferred.done(function () {
+				assert(true);
+				done();
 			}).fail(function () {
 				assert(false);
 			});
-			deffered.resolve();
-			setTimeout(function () {
-				done();
-			}, 10);
 		});
 		it('reject', function (done) {
-			deffered.reject();
-			deffered.done(function () {
+			deferred.reject();
+			deferred.done(function () {
 				assert(false);
 			}).fail(function () {
-				assert(false);
-			});
-			deffered.reject();
-			setTimeout(function () {
+				assert(true);
 				done();
-			}, 10);
+			});
 		});
 	});
 })();

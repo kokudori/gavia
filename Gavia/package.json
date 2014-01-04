@@ -1,6 +1,6 @@
 {
 	"name": "Gavia",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"description": "ActiveRecord for IndexedDB",
 	"readmeFilename": "README.md",
 	"main": "./Gavia.min.js",

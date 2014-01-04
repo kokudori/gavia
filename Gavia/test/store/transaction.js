@@ -18,7 +18,7 @@
 	describe('Store', function () {
 		describe('transaction', function () {
 			afterEach(function (done) {
-				$.when(
+				Gavia.Deferred.when(
 					db.store.clear(),
 					db.other.clear(),
 					db.another.clear()
@@ -75,7 +75,7 @@
 						another.add({ id: i + 1 });
 					}
 				}).then(function () {
-					return $.when(
+					return Gavia.Deferred.when(
 						db.other.all({ count: true }),
 						db.another.all({ count: true })
 					);

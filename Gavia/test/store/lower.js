@@ -12,7 +12,7 @@
 		describe('lower', function () {
 			before(function (done) {
 				var array = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-				$.when.apply(null, array.map(function (x) {
+				Gavia.Deferred.when.apply(null, array.map(function (x) {
 					var record = Gavia['store.lower'].store.create();
 					record.num = 'num-' + x;
 					return record.save().promise;

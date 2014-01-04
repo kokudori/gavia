@@ -22,9 +22,9 @@ Store.getKeyRange = function (mode, left, right) {
 };
 
 Store.fetch = function (context, mode, value, callback, option, ext) {
-	var deferred = $.Deferred(),
+	var Deferred = new Gavia.Deferred(),
 		request = indexedDB.open(context.db.name, context.db.version);
-	option = $.extend({
+	option = extend({
 		direction: Gavia.Store.direction.next,
 		index: null,
 		offset: 0,
@@ -46,11 +46,11 @@ Store.fetch = function (context, mode, value, callback, option, ext) {
 					limit = option.limit || value;
 				value = option.offset > value ? 0 : value - option.offset;
 				value = limit >= value ? value : limit;
-				deferred.resolve(value);
+				Deferred.resolve(value);
 				db.close();
 			};
 			request.onerror = function () {
-				deferred.reject();
+				Deferred.reject();
 				db.close();
 			};
 			return;
@@ -60,21 +60,21 @@ Store.fetch = function (context, mode, value, callback, option, ext) {
 			var cursor = event.target.result,
 				result = callback(cursor, count, option);
 			if (typeof result === 'function') {
-				deferred.resolve(result());
+				Deferred.resolve(result());
 				db.close();
 				return;
 			}
 			count += 1;
 		};
 		request.onerror = function () {
-			deferred.reject();
+			Deferred.reject();
 			db.close();
 		};
 	};
 	request.onerror = function (event) {
 		var db = event.target.result;
-		deferred.reject();
+		Deferred.reject();
 		db.close();
 	};
-	return deferred.promise();
+	return Deferred.promise();
 };

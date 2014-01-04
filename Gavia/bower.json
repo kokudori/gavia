@@ -1,6 +1,6 @@
 {
 	"name": "Gavia",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"description": "ActiveRecord for IndexedDB",
 	"main": "./Gavia.min.js",
 	"license": "MIT",
@@ -21,9 +21,6 @@
 		"bower_components",
 		"doc"
 	],
-	"dependencies": {
-		"jquery": "~2.0.0"
-	},
 	"devDependencies": {
 		"mocha": "~1.16.2",
 		"chai": "~1.8.1"

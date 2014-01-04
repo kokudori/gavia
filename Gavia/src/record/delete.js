@@ -1,6 +1,6 @@
 Gavia.Record.fn.delete = function (keyName) {
 	var request,
-		deferred = $.Deferred(),
+		Deferred = new Gavia.Deferred(),
 		key = (function () {
 			if (this.store.keyPath)
 				return this[this.store.keyPath];
@@ -10,8 +10,8 @@ Gavia.Record.fn.delete = function (keyName) {
 				return this[keyName];
 		}).apply(this);
 	if (!key) {
-		deferred.reject('key does not setting.');
-		return deferred.promise();
+		Deferred.reject('key does not setting.');
+		return Deferred.promise();
 	}
 
 	request = indexedDB.open(this.db.name, this.db.version);
@@ -20,18 +20,18 @@ Gavia.Record.fn.delete = function (keyName) {
 			store = db.transaction([this.store.name], 'readwrite').objectStore(this.store.name);
 		store.delete(key);
 		store.transaction.oncomplete = function () {
-			deferred.resolve(key);
+			Deferred.resolve(key);
 			db.close();
 		};
 		store.transaction.onerror = function (event) {
-			deferred.reject(key);
+			Deferred.reject(key);
 			db.close();
 		};
 	}.bind(this);
 	request.onerror = function (event) {
 		var db = event.target.result;
-		deferred.reject();
+		Deferred.reject();
 		db.close();
 	};
-	return deferred.promise();
+	return Deferred.promise();
 };

@@ -68,7 +68,7 @@ var createIndex = function (store, option) {
 };
 
 var createObjectStore = function (db, name, option) {
-	option = $.extend({
+	option = extend({
 		keyPath: null,
 		autoIncrement: false,
 		index: null

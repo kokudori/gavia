@@ -16,19 +16,19 @@
 		describe('delete', function () {
 			before(function (done) {
 				var array = [1, 2, 3, 4, 5];
-				$.when.apply(null, array.map(function (x) {
+				Gavia.Deferred.when.apply(null, array.map(function (x) {
 					var record = db.keyPath.create(x);
 					record.num = 'num-' + x;
 					return record.save().promise;
 				})).then(function () {
-					return $.when.apply(null, array.map(function (x) {
+					return Gavia.Deferred.when.apply(null, array.map(function (x) {
 						var record = db.withoutKeyPath.create();
 						record.id = x;
 						record.num = 'num-' + x;
 						return record.save(x).promise;
 					}));
 				}).then(function () {
-					return $.when.apply(null, array.map(function (x) {
+					return Gavia.Deferred.when.apply(null, array.map(function (x) {
 						var record = db.withAutoIncrement.create();
 						record.id = x;
 						record.num = 'num-' + x;
@@ -89,6 +89,8 @@
 				db.keyPath.find(123).then(function (record) {
 					assert.equal(undefined, record);
 					return db.keyPath.delete(123);
+				}).done(function () {
+					assert(false);
 				}).fail(function () {
 					assert(true);
 					done();

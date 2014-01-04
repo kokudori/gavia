@@ -19,7 +19,7 @@ var Record = function (store, db, prototype) {
 		});
 	}.bind(this));
 
-	$.extend(Object.getPrototypeOf(this), prototype);
+	extend(Object.getPrototypeOf(this), prototype);
 };
 
 Record.prototype = Gavia.Record.fn;
