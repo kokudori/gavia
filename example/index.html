@@ -3,69 +3,61 @@
 <head>
 	<meta charset="utf-8" />
 	<title></title>
-	<link type="text/css" href="./css/bootstrap.css" rel="stylesheet" />
-	<link type="text/css" href="./css/app.css" rel="stylesheet" />
+	<link type="text/css" href="./vendor/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
 </head>
 <body>
-	<div class="alert alert-success hide">
-		<button type="button" class="close" data-dismiss="alert">&times;</button>
-		<strong>Success!</strong> Created a new TODO.
-	</div>
-	<div class="alert alert-error hide">
-		<button type="button" class="close" data-dismiss="alert">&times;</button>
-		<strong>Error!</strong> Failed to create a new TODO.
-	</div>
-	<div class="alert alert-success hide">
-		<button type="button" class="close" data-dismiss="alert">&times;</button>
-		<strong>Success!</strong> Updated a TODO.
-	</div>
-	<div class="alert alert-error hide">
-		<button type="button" class="close" data-dismiss="alert">&times;</button>
-		<strong>Error!</strong> Failed to update a TODO.
-	</div>
-	<div class="alert alert-success hide">
-		<button type="button" class="close" data-dismiss="alert">&times;</button>
-		<strong>Success!</strong> Deleted a TODO.
-	</div>
-	<div class="alert alert-error hide">
-		<button type="button" class="close" data-dismiss="alert">&times;</button>
-		<strong>Error!</strong> Failed to delete a TODO.
-	</div>
-	<div class="alert alert-error hide">
-		<button type="button" class="close" data-dismiss="alert">&times;</button>
-		<strong>Error!</strong> Failed to get a TODO.
-	</div>
+	<div class="container">
+		<h1><a href="./">TODO App</a></h1>
 
-	<h1>TODO App</h1>
-
-	<div id="content" class="row">
-		<div id="menu" class="span2 btn-group btn-group-vertical">
-			<button class="btn">Create</button>
-			<button class="btn disabled">Complete</button>
-			<button class="btn disabled">Delete</button>
-		</div>
-
-		<table id="main" class="span10 table table-hover"><tbody></tbody></table>
-	</div>
-
-	<div id="createTodo" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-			<h3>Create TODO</h3>
-		</div>
-		<div class="modal-body">
-			<div class="alert alert-warning hide">
-				<button type="button" class="close" data-dismiss="alert">&times;</button>
-				<strong>Warn!</strong> Required for name.
+		<div id="content" class="row">
+			<div id="menu" class="col-md-2 btn-group btn-group-vertical">
+				<a data-toggle="modal" class="btn btn-default btn-lg" href="#create">作成</a>
+				<a data-toggle="modal" class="btn btn-default btn-lg disabled">達成</a>
+				<a data-toggle="modal" class="btn btn-default btn-lg disabled">削除</a>
 			</div>
-			<label for="title">名前</label>
-			<input name="title" type="text" required />
-			<label for="memo">メモ</label>
-			<textarea name="memo"></textarea>
+
+			<div class="col-md-10">
+				<table id="main" class="table table-hover">
+					<thead>
+						<tr>
+							<th>選択</th>
+							<th>名前</th>
+							<th>メモ</th>
+							<th>達成度</th>
+						</tr>
+					</thead>
+					<tbody></tbody>
+				</table>
+			</div>
 		</div>
-		<div class="modal-footer">
-			<button class="btn btn-primary">Create</button>
-			<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+	</div>
+
+	<div id="create" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="=modal-title">TODOの作成</h4>
+				</div>
+				<div class="modal-body">
+					<div class="alert alert-warning alert-dismissable hide">
+						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+						<strong>Warn!</strong> 名前を入力してください。
+					</div>
+					<div class="form-group">
+						<label class="control-label" for="title">名前</label>
+						<input name="title" type="text" class="form-control" required />
+					</div>
+					<div class="form-group">
+						<label class="control-label" for="memo">メモ</label>
+						<textarea class="form-control" name="memo"></textarea>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button class="btn btn-primary">Create</button>
+					<button class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
 		</div>
 	</div>
 
@@ -79,10 +71,10 @@
 		</tr>
 	</script>
 
-	<script src="./js/jquery.js"></script>
-	<script src="./js/jquery.tmpl.js"></script>
-	<script src="./js/bootstrap.js"></script>
-	<script src="./js/Gavia.js"></script>
-	<script src="./js/app.js"></script>
+	<script src="./vendor/jquery/jquery.js"></script>
+	<script src="./vendor/jquery-tmpl/jquery.tmpl.js"></script>
+	<script src="./vendor/bootstrap/dist/js/bootstrap.js"></script>
+	<script src="./vendor/gavia/Gavia/Gavia.js"></script>
+	<script src="./app.js"></script>
 </body>
 </html>

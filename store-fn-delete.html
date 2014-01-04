@@ -2,27 +2,35 @@
 <html>
       <head>
         <title>Gavia — delete</title>
-        <link type="text/css" media="screen, projection" rel="stylesheet" href="css/blueprint/screen.css"></link>
-        <link type="text/css" media="screen and (min-device-width: 800px), projection" rel="stylesheet" href="css/blueprint/grid.css"></link>
-        <link type="text/css" media="print" rel="stylesheet" href="css/blueprint/print.css"></link> 
+        
+        <link rel="stylesheet" href="css/blueprint/screen.css" type="text/css" media="screen, projection"/>
+        <link rel="stylesheet" href="css/blueprint/grid.css" type="text/css" media="screen and (min-device-width: 800px), projection"/>
+        <link rel="stylesheet" href="css/blueprint/print.css" type="text/css" media="print"/> 
         <!--[if lt IE 8]>
-          <link rel="stylesheet" href="css/blueprint/ie.css" type="text/css" media="screen, projection"/>
+          <link rel="stylesheet" href={ relativeBase + "css/blueprint/ie.css" } type="text/css" media="screen, projection"/>
         <![endif]-->
-        <link type="text/css" media="screen, projection" rel="stylesheet" href="css/pamflet.css"></link>
-        <link type="text/css" media="print" rel="stylesheet" href="css/pamflet-print.css"></link>
-        <link type="text/css" media="screen and (min-device-width: 800px), projection" rel="stylesheet" href="css/pamflet-grid.css"></link>
-        <link type="text/css" media="screen, projection" rel="stylesheet" href="css/custom.css"></link>
-        <script src="js/jquery-1.6.2.min.js"></script>
-        <script src="js/jquery.collapse.js"></script>
-        <script src="js/pamflet.js"></script>
-        <script type="text/javascript" src="js/prettify/prettify.js"></script><link type="text/css" rel="stylesheet" href="css/prettify.css"></link><script type="text/javascript"><!--
+        <link rel="stylesheet" href="css/pamflet.css" type="text/css" media="screen, projection"/>
+        <link rel="stylesheet" href="css/pamflet-print.css" type="text/css" media="print"/>
+        <link rel="stylesheet" href="css/pamflet-grid.css" type="text/css" media="screen and (min-device-width: 800px), projection"/>
+        <link rel="stylesheet" href="css/color_scheme-redmond.css" type="text/css" media="screen, projection"/>
+        <link rel="stylesheet" href="css/color_scheme-github.css" type="text/css" media="screen, projection"/>
+        <link rel="stylesheet" href="css/color_scheme-monokai.css" type="text/css" media="screen, projection"/>
+        <script type="text/javascript" src="js/jquery-1.6.2.min.js"></script>
+        <script type="text/javascript" src="js/jquery.collapse.js"></script>
+        <script type="text/javascript" src="js/pamflet.js"></script>
+        <script type="text/javascript">
+          Pamflet.page.language = 'en';
+        </script>
+        <script type="text/javascript" src="js/prettify/prettify.js"></script><link type="text/css" rel="stylesheet" href="css/prettify.css"/><script type="text/javascript"><!--
         window.onload=function() { prettyPrint(); };
       --></script>
-        <meta charset="utf-8"></meta>
-        <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+        <link rel="stylesheet" href="css/custom.css" type="text/css" media="screen, projection"/>
+        <meta charset="utf-8"/>
+        <meta content="width=device-width, initial-scale=1" name="viewport"></meta>
+        
         
       </head>
-      <body>
+      <body class="color_scheme-redmond">
         <a class="page prev nav" href="store-fn-create.html">
             <span class="space">&nbsp;</span>
             <span class="flip">&gt;</span>
@@ -32,14 +40,16 @@
           </a>
         <div class="container">
           <div class="span-16 prepend-1 append-1">
-            <div class="top nav span-16 title">
-              <span>Gavia</span> — delete
+            <div class="span-16 top nav">
+              <div class="span-16 title">
+                <span>Gavia</span> — delete
+              </div>
             </div>
           </div>
           <div class="span-16 prepend-1 append-1 contents">
-            <h1 id="delete">delete</h1><p>オブジェクトストアから特定のオブジェクトを削除。
-</p><h2 id="%E3%82%B7%E3%82%B0%E3%83%8D%E3%83%81%E3%83%A3">シグネチャ</h2><pre><code class="prettyprint lang-">jQueryDeferred = gaviaStoreObject.delete(key);
-</code></pre><h2 id="%E3%83%91%E3%83%A9%E3%83%A1%E3%83%BC%E3%82%BF">パラメータ</h2><table class="report">
+            <h1 id="delete">delete<a href="#delete" class="header-link"><span class="header-link-content">&nbsp;</span></a></h1><p>オブジェクトストアから特定のオブジェクトを削除。
+</p><h2 id="%E3%82%B7%E3%82%B0%E3%83%8D%E3%83%81%E3%83%A3">シグネチャ<a href="#%E3%82%B7%E3%82%B0%E3%83%8D%E3%83%81%E3%83%A3" class="header-link"><span class="header-link-content">&nbsp;</span></a></h2><pre><code class="prettyprint lang-">deferred = gaviaStoreObject.delete(key);
+</code></pre><h2 id="%E3%83%91%E3%83%A9%E3%83%A1%E3%83%BC%E3%82%BF">パラメータ<a href="#%E3%83%91%E3%83%A9%E3%83%A1%E3%83%BC%E3%82%BF" class="header-link"><span class="header-link-content">&nbsp;</span></a></h2><table class="report">
 	<thead>
 		<tr>
 			<th>名前</th>
@@ -54,22 +64,23 @@
 			<td>省略不可。</td>
 		</tr>
 	</tbody>
-</table>
-<h2 id="%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB">サンプル</h2><pre><code class="prettyprint lang-">gaviaStoreObject.delete(123).done(function() {
+</table><h2 id="%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB">サンプル<a href="#%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB" class="header-link"><span class="header-link-content">&nbsp;</span></a></h2><pre><code class="prettyprint lang-">gaviaStoreObject.delete(123).done(function() {
 	console.log('delete done');
 });
-</code></pre><div class="bottom nav">
+</code></pre><div class="bottom nav span-16">
                         <em>Next Page</em>
                         <span class="arrow">&gt;</span>
-                        <a href="store-fn-filter.html"> filter </a>
+                        <a href="store-fn-filter.html"> filter </a>                        
+                        
                       </div><div class="tocwrapper show">
       <a class="tochead nav" style="display: none" href="#toc">❦</a>
       <a name="toc"></a>
       <h4 class="toctitle">Contents</h4>
       <div class="tocbody">
-      <div><a href="index.html">Gavia</a></div><ol class="toc"> <li><div><a href="gavia.html">Gavia</a></div><ol class="toc">  </ol></li><li><div><a href="gavia-store-fn.html">Gavia.Store.fn</a></div><ol class="toc"> <li><div><a href="store-fn-all.html">all</a></div></li><li><div><a href="store-fn-bound.html">bound</a></div></li><li><div><a href="store-fn-boundThan.html">boundThan</a></div></li><li><div><a href="store-fn-clear.html">clear</a></div></li><li><div><a href="store-fn-create.html">create</a></div></li><li><div class="current">delete</div></li><li><div><a href="store-fn-filter.html">filter</a></div></li><li><div><a href="store-fn-find.html">find</a></div></li><li><div><a href="store-fn-lower.html">lower</a></div></li><li><div><a href="store-fn-lowerThan.html">lowerThan</a></div></li><li><div><a href="store-fn-transaction.html">transaction</a></div></li><li><div><a href="store-fn-upper.html">upper</a></div></li><li><div><a href="store-fn-upperThan.html">upperThan</a></div></li> </ol></li><li><div><a href="gavia-record-fn.html">Gavia.Record.fn</a></div><ol class="toc"> <li><div><a href="record-fn-delete.html">delete</a></div></li><li><div><a href="record-fn-save.html">save</a></div></li><li><div><a href="record-fn-update.html">update</a></div></li> </ol></li><li><div><a href="Untitled.html">Untitled</a></div></li><li class="generated"><div><a href="Contents+in+Depth.html">Contents in Depth</a></div></li><li class="generated"><div><a href="Combined+Pages.html">Combined Pages</a></div></li> </ol></div></div>
+      <div><a href="index.html">Gavia</a></div><ol class="toc"> <li><div><a href="gavia.html">Gavia</a></div><ol class="toc">  </ol></li><li><div><a href="gavia-store-fn.html">Gavia.Store.fn</a></div><ol class="toc"> <li><div><a href="store-fn-all.html">all</a></div></li><li><div><a href="store-fn-bound.html">bound</a></div></li><li><div><a href="store-fn-boundThan.html">boundThan</a></div></li><li><div><a href="store-fn-clear.html">clear</a></div></li><li><div><a href="store-fn-create.html">create</a></div></li><li><div class="current">delete</div></li><li><div><a href="store-fn-filter.html">filter</a></div></li><li><div><a href="store-fn-find.html">find</a></div></li><li><div><a href="store-fn-lower.html">lower</a></div></li><li><div><a href="store-fn-lowerThan.html">lowerThan</a></div></li><li><div><a href="store-fn-transaction.html">transaction</a></div></li><li><div><a href="store-fn-upper.html">upper</a></div></li><li><div><a href="store-fn-upperThan.html">upperThan</a></div></li> </ol></li><li><div><a href="gavia-record-fn.html">Gavia.Record.fn</a></div><ol class="toc"> <li><div><a href="record-fn-delete.html">delete</a></div></li><li><div><a href="record-fn-save.html">save</a></div></li><li><div><a href="record-fn-update.html">update</a></div></li> </ol></li><li><div><a href="gavia-deferred.html">Gavia.Deferred</a></div><ol class="toc"> <li><div><a href="gavia-deferred-when.html">Gavia.Deferred.when</a></div></li><li><div><a href="gavia-deferred-done.html">done</a></div></li><li><div><a href="gavia-deferred-fail.html">fail</a></div></li><li><div><a href="gavia-deferred-then.html">then</a></div></li><li><div><a href="gavia-deferred-resolve.html">resolve</a></div></li><li><div><a href="gavia-deferred-reject.html">reject</a></div></li><li><div><a href="gavia-deferred-promise.html">promise</a></div></li> </ol></li><li><div><a href="Thanks.html">Thanks</a></div></li><li class="generated"><div><a href="Contents+in+Depth.html">Contents in Depth</a></div></li><li class="generated"><div><a href="Combined+Pages.html">Combined Pages</a></div></li> </ol></div></div>
           </div>
         </div>
-        <a class="fork nav" href="http://github.com/kokudori/gavia"><img alt="Fork me on GitHub" src="img/fork.png"></img></a>
+        
+        
       </body>
     </html>
