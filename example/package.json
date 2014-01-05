@@ -1,0 +1,9 @@
+{
+	"name": "example",
+	"version": "0.0.0",
+	"main": "app.js",
+	"devDependencies": {
+		"grunt": "~0.4.2"
+		"grunt-bower-task": "~0.3.4"
+	}
+}

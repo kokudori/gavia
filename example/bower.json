@@ -1,17 +1,25 @@
 {
-  "name": "example",
-  "version": "0.1.0",
-  "homepage": "https://github.com/kokudori/gavia",
-  "authors": [
-    "Kokudori <kokudori0912@gmail.com>"
-  ],
-  "description": "Gavia example app",
-  "main": "index.html",
-  "license": "MIT",
-  "devDependencies": {
-    "jquery": "~2.0.3",
-    "bootstrap": "~3.0.3",
-    "jquery-tmpl": "https://github.com/BorisMoore/jquery-tmpl.git#vBeta1.0.0",
-    "gavia": "~0.1.0"
-  }
+	"name": "example",
+	"version": "0.1.0",
+	"homepage": "https://github.com/kokudori/gavia",
+	"authors": [
+		"Kokudori <kokudori0912@gmail.com>"
+	],
+	"description": "Gavia example app",
+	"main": "index.html",
+	"license": "MIT",
+	"devDependencies": {
+		"jquery": "~2.0.3",
+		"bootstrap": "~3.0.3",
+		"jquery-tmpl": "https://github.com/BorisMoore/jquery-tmpl.git#vBeta1.0.0",
+		"gavia": "~0.1.0"
+	},
+	"exportsOverride": {
+		"gavia": {
+			"js": "Gavia/Gavia.js"
+		},
+		"jquery-tmpl": {
+			"js": "jquery.tmpl.js"
+		}
+	}
 }
