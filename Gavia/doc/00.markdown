@@ -52,11 +52,11 @@ db.store.filter(function(record) {
 簡単なTODOアプリをGaviaを使って構築してみました。
 
 <p>
-<a href="http://kokudori.github.io/gavia/example/index.html">http://kokudori.github.io/gavia/example/index.html</a>
+<a href="http://kokudori.github.io/gavia/example/">http://kokudori.github.io/gavia/example/</a>
 </p>
 
 ソースはGistにて公開しています。
 
 <p>
-<a href="https://gist.github.com/kokudori/5559908">https://gist.github.com/kokudori/5559908</a>
+<a href="https://gist.github.com/kokudori/8254669">https://gist.github.com/kokudori/8254669</a>
 </p>
