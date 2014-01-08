@@ -130,5 +130,8 @@
     <Content Include="doc\README.md" />
     <Content Include="doc\template.properties" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include=".bowerrc" />
+  </ItemGroup>
   <Import Project="$(VSToolsPath)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(VSToolsPath)\TypeScript\Microsoft.TypeScript.targets')" />
 </Project>
