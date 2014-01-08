@@ -1,4 +1,3 @@
 {
-	"directory": "vendor",
-	"json": "./Gavia/bower.json"
+	"directory": "Gavia/vendor"
 }

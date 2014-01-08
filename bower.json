@@ -2,7 +2,7 @@
 	"name": "Gavia",
 	"version": "0.1.0",
 	"description": "ActiveRecord for IndexedDB",
-	"main": "Gavia.min.js",
+	"main": "Gavia/Gavia.min.js",
 	"license": "MIT",
 	"keywords": [
 		"Gavia",
@@ -21,7 +21,16 @@
 		"**/.*",
 		"node_modules",
 		"vendor",
-		"doc"
+		"doc",
+		"src",
+		"test",
+		"Gavia/Gruntfile.js",
+		"Gavia/package.json",
+		"Gavia/testem.json",
+		"**/*.sln",
+		"**/*.suo",
+		"**/*.csproj",
+		"**/*.csproj.user"
 	],
 	"devDependencies": {
 		"mocha": "~1.16.2",

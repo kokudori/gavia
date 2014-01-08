@@ -2,7 +2,7 @@
 	"name": "Gavia",
 	"version": "0.1.0",
 	"description": "ActiveRecord for IndexedDB",
-	"readmeFilename": "README.md",
+	"readmeFilename": "../README.md",
 	"main": "Gavia.min.js",
 	"scripts": {
 		"pretest": "./node_modules/.bin/bower install",

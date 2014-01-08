@@ -57,8 +57,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Content Include="doc\custom.css" />
-    <Content Include="Gavia.js" />
-    <Content Include="Gavia.min.js" />
     <Content Include="Gruntfile.js" />
     <Content Include="src\db\all.js" />
     <Content Include="src\db\delete.js" />
@@ -104,9 +102,6 @@
   <ItemGroup>
     <Content Include="package.json" />
     <Content Include="testem.json" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bower.json" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="test\README.md" />
