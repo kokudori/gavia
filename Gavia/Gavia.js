@@ -781,5 +781,9 @@ Gavia.Record.fn.update = function (properties) {
 	}.bind(this));
 	return this;
 };
+if (typeof define === 'function' && typeof define.amd === 'object') {
+define(function(exports) { return Gavia; });
+} else {
 window.Gavia = Gavia;
+}
 }).call(this);
